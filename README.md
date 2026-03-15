@@ -4,25 +4,38 @@ Scaffold a full mobile app project with Claude agent configs baked in. Go from i
 
 ## Quick Start
 
+### New project
 ```bash
-# From the repo
 npx github:syahrul12345/slopmachine my_new_app
-
-# Or clone and run locally
-git clone https://github.com/syahrul12345/slopmachine.git
-node slopmachine/bin/cli.js my_new_app
-
-# Or link globally
-cd slopmachine && npm link
-slopmachine my_new_app
-```
-
-Then:
-```bash
 cd my_new_app
 supabase start    # Start local Supabase (requires Docker)
 npx expo start    # Start the app
 claude            # Open Claude and start building
+```
+
+### Existing project
+Already have an app? Add slopmachine's Claude configs to it:
+```bash
+cd my-existing-app
+npx github:syahrul12345/slopmachine init
+```
+
+This injects only the Claude agent framework — no files are overwritten:
+- `CLAUDE.md` — living agent router
+- `.claude/agents/` — developer, designer, marketing agents
+- `.claude/workflows/` — local-dev, build-and-ship, marketing-launch
+- `.claude/context/` — for external API docs (auto-populated by Claude)
+- `lib/` — analytics, purchases, notifications wrappers (only if missing)
+- `marketing/` — output directories for screenshots, videos, UGC
+- `supabase/` — config + migrations + seed (only if missing)
+- `.env.local` — env var template (only if missing)
+
+### Local install
+```bash
+git clone https://github.com/syahrul12345/slopmachine.git
+cd slopmachine && npm link
+slopmachine my_new_app       # new project
+slopmachine init             # existing project
 ```
 
 ## What You Get
