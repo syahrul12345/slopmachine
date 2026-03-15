@@ -7,11 +7,23 @@ Scaffold a full mobile app project with Claude agent configs baked in. Go from i
 ### New project
 ```bash
 npx github:syahrul12345/slopmachine my_new_app
-cd my_new_app
-supabase start    # Start local Supabase (requires Docker)
-npx expo start    # Start the app
-claude            # Open Claude and start building
 ```
+
+The CLI will ask what you're building:
+```
+? What are you building? (select all that apply)
+  ◉ Mobile app (Expo + React Native)
+  ◉ Landing page (Next.js)
+  ◯ CRM (Supabase admin dashboard)
+
+? What features do you need?
+  ◉ Auth (Apple + Google Sign-In)
+  ◉ Payments (RevenueCat)
+  ◯ Push notifications
+  ◉ Analytics
+```
+
+Only the modules you select get generated — no unused rules cluttering your context.
 
 ### Existing project
 Already have an app? Add slopmachine's Claude configs to it:
@@ -20,81 +32,77 @@ cd my-existing-app
 npx github:syahrul12345/slopmachine init
 ```
 
-This injects only the Claude agent framework — no files are overwritten:
-- `CLAUDE.md` — living agent router
-- `.claude/agents/` — developer, designer, marketing agents
-- `.claude/workflows/` — local-dev, build-and-ship, marketing-launch
-- `.claude/context/` — for external API docs (auto-populated by Claude)
-- `lib/` — analytics, purchases, notifications wrappers (only if missing)
-- `marketing/` — output directories for screenshots, videos, UGC
-- `supabase/` — config + migrations + seed (only if missing)
-- `.env.local` — env var template (only if missing)
+Same interactive prompt — injects only the relevant Claude agent files without overwriting anything.
 
 ### Local install
 ```bash
 git clone https://github.com/syahrul12345/slopmachine.git
-cd slopmachine && npm link
+cd slopmachine && npm install && npm link
 slopmachine my_new_app       # new project
 slopmachine init             # existing project
 ```
 
-## What You Get
+## Modules
 
-### App Scaffold
-- **Mobile**: Expo + React Native + TypeScript + Expo Router
-- **Backend**: Supabase (Postgres, Auth, Storage, Realtime, Edge Functions)
-- **Landing page**: Next.js with referral redirect handler (`/r/:code`)
-- **Payments**: RevenueCat (`react-native-purchases`) pre-wired
-- **Push notifications**: `expo-notifications` + Supabase `push_tokens` table
-- **Analytics**: Provider-agnostic wrapper in `lib/analytics.ts`
-- **Auth**: Google + Apple sign-in via Supabase Auth
+### Products (pick what you're building)
+| Module | What it generates |
+|--------|-------------------|
+| **Mobile app** | Expo + RN scaffold, `mobile.md` agent, `designer.md` agent, `build-and-ship.md` workflow |
+| **Landing page** | Next.js in `landing/`, referral redirect handler, `landing.md` agent |
+| **CRM** | Supabase CRM tables, admin dashboard, `crm.md` agent, `crm-setup.md` workflow |
 
-### Claude Agent Framework
-- **`CLAUDE.md`** — Living router that evolves as your project grows. Auto-documents external APIs.
-- **`developer.md`** — Primary agent. Knows the full stack, auth, payments, push, analytics, migrations.
-- **`designer.md`** — UI design, design systems, app store asset specs and dimensions.
-- **`marketing.md`** — Screenshots via simulator, ffmpeg demo videos, UGC scripts, store listings.
+### Features (pick what you need)
+| Module | What it generates |
+|--------|-------------------|
+| **Auth** | Apple + Google Sign-In setup, `auth.md` agent, `lib/auth.tsx` |
+| **Payments** | RevenueCat setup, `payments.md` agent, `lib/purchases.ts` |
+| **Push notifications** | Expo Notifications + Supabase, `push.md` agent, `lib/notifications.ts` |
+| **Analytics** | Provider-agnostic wrapper, `analytics.md` agent, `lib/analytics.ts` |
 
-### Workflows
-- **`local-dev.md`** — Supabase local cluster, migrations, seed data, dev servers.
-- **`build-and-ship.md`** — Pre-flight checklist → EAS build → TestFlight → App Store.
-- **`marketing-launch.md`** — Screenshots → demo video → UGC content → store listing.
+### Auto-dependencies
+- CRM auto-enables Landing + Auth
+- Payments auto-enables Mobile + Auth
+- Push auto-enables Mobile
 
-## Project Structure
+### Always included
+- `marketing.md` agent — screenshots, ffmpeg videos, UGC scripts, store listings
+- `designer.md` agent — UI design, design systems, app store assets
+- `local-dev.md` workflow — Supabase local cluster, migrations, seed data
+- `marketing-launch.md` workflow — full marketing pipeline
+- `marketing/` directories — output for screenshots, videos, UGC
+
+## Claude Agent Framework
+
+Each module generates a focused `.md` agent file. Claude loads only what's relevant:
 
 ```
-my_new_app/
-├── app/                       # Expo Router screens
-│   ├── _layout.tsx
-│   └── index.tsx
-├── lib/                       # Shared utilities
-│   ├── supabase.ts            # Supabase client
-│   ├── auth.tsx               # Auth context + provider
-│   ├── analytics.ts           # Analytics wrapper
-│   ├── purchases.ts           # RevenueCat wrapper
-│   └── notifications.ts      # Push notification handler
-├── supabase/
-│   ├── config.toml            # Local Supabase config
-│   ├── migrations/            # SQL migrations (supabase db diff)
-│   └── seed.sql               # Local dev seed data
-├── landing/                   # Next.js landing page
-│   └── app/r/[code]/route.ts  # Referral redirect handler
-├── marketing/                 # Generated marketing assets
-├── CLAUDE.md                  # Claude agent router
-└── .claude/
-    ├── agents/                # developer.md, designer.md, marketing.md
-    ├── workflows/             # local-dev.md, build-and-ship.md, marketing-launch.md
-    └── context/               # Auto-populated API/vendor docs
+CLAUDE.md                          ← Dynamic router (generated based on your selections)
+.claude/agents/
+  mobile.md                        ← Expo + RN conventions, build commands
+  landing.md                       ← Next.js landing page, referral redirects
+  auth.md                          ← Apple + Google Sign-In setup
+  crm.md                           ← Supabase CRM tables, admin dashboard
+  payments.md                      ← RevenueCat setup, paywall, webhooks
+  push.md                          ← Expo Notifications, push_tokens table
+  analytics.md                     ← Provider-agnostic analytics wrapper
+  designer.md                      ← UI design, app store assets
+  marketing.md                     ← Screenshots, videos, UGC, store listings
+.claude/workflows/
+  local-dev.md                     ← Local Supabase + dev servers
+  build-and-ship.md                ← Simulator test → screenshots → .ipa → TestFlight → review
+  marketing-launch.md              ← Full marketing asset pipeline
+  crm-setup.md                     ← CRM migration + dashboard setup
+.claude/context/                   ← Auto-populated by Claude with external API docs
 ```
 
 ## How It Works
 
-1. Run `slopmachine my_app` — scaffolds everything, installs deps, inits git
+1. Run `slopmachine my_app` — select your modules, scaffolds everything
 2. Open the project and run `claude`
-3. Describe what you want to build — the developer agent takes over
+3. Describe what you want to build — Claude loads the right agents automatically
 4. Claude auto-documents any external APIs in `.claude/context/`
-5. When the app is ready, run the build-and-ship workflow
-6. Run the marketing workflow for screenshots, videos, and store listings
+5. When ready, run workflows: build-and-ship, marketing-launch
+6. Ship to TestFlight and App Store
 
 ## Requirements
 

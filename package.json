@@ -1,6 +1,6 @@
 {
   "name": "slopmachine",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Scaffold a full mobile app project with Claude agent configs baked in",
   "bin": {
     "slopmachine": "./bin/cli.js"
@@ -9,6 +9,9 @@
     "bin",
     "template"
   ],
+  "dependencies": {
+    "inquirer": "^9.2.0"
+  },
   "keywords": [
     "expo",
     "react-native",
