@@ -1,0 +1,50 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "lint": "eslint .",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:diff": "supabase db diff -f",
+    "db:push": "supabase db push",
+    "build:dev": "eas build --profile development --platform ios",
+    "build:preview": "eas build --profile preview --platform ios",
+    "build:prod": "eas build --profile production --platform ios",
+    "submit:ios": "eas submit --platform ios",
+    "submit:android": "eas submit --platform android"
+  },
+  "dependencies": {
+    "expo": "~52.0.0",
+    "expo-router": "~4.0.0",
+    "expo-status-bar": "~2.0.0",
+    "expo-linking": "~7.0.0",
+    "expo-constants": "~17.0.0",
+    "expo-apple-authentication": "~7.0.0",
+    "expo-auth-session": "~6.0.0",
+    "expo-web-browser": "~14.0.0",
+    "expo-notifications": "~0.29.0",
+    "expo-device": "~7.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.0",
+    "react-native-safe-area-context": "~5.0.0",
+    "react-native-screens": "~4.0.0",
+    "react-native-gesture-handler": "~2.20.0",
+    "react-native-reanimated": "~3.16.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "react-native-purchases": "^8.0.0",
+    "react-native-url-polyfill": "^2.0.0",
+    "@react-native-async-storage/async-storage": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.0",
+    "typescript": "~5.3.0",
+    "@babel/core": "^7.25.0",
+    "eslint": "^8.57.0"
+  }
+}

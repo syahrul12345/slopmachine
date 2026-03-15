@@ -1,0 +1,32 @@
+node_modules/
+.expo/
+dist/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.env
+.env.local
+.env.*.local
+
+# Supabase
+supabase/.temp/
+
+# Landing page
+landing/node_modules/
+landing/.next/
+landing/out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Marketing assets (large files)
+marketing/videos/raw/
