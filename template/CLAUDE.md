@@ -10,7 +10,8 @@
 ## Stack
 - Mobile: Expo + React Native + TypeScript + Expo Router
 - Backend: Supabase (Auth, DB, Storage, Edge Functions, Realtime)
-- Landing: Next.js (in `landing/` directory)
+- Landing + CRM Admin: Next.js (in `landing/` directory)
+- CRM: Supabase tables + Next.js admin dashboard (`landing/app/admin/`)
 - Payments: RevenueCat
 - Analytics: TBD (PostHog/Mixpanel/etc — implement via `lib/analytics.ts` wrapper)
 
@@ -20,6 +21,7 @@ By default, you are the **developer agent**. Load `.claude/agents/developer.md` 
 Route to other agents based on the task:
 - **Design tasks** (UI review, design specs, app store assets): load `.claude/agents/designer.md`
 - **Marketing tasks** (screenshots, videos, UGC, app store listing): load `.claude/agents/marketing.md`
+- **CRM tasks** (contacts, deals, admin dashboard, user sync): load `.claude/agents/crm.md`
 - **Multi-step workflows**: see `.claude/workflows/`
 
 ## External Dependencies

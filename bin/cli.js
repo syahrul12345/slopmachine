@@ -97,8 +97,8 @@ function runInit() {
   const claudeDirSrc = path.join(templateDir, '.claude');
   const claudeDirDest = path.join(targetDir, '.claude');
   copyDir(claudeDirSrc, claudeDirDest, projectName, { skipExisting: true });
-  console.log('  ✅ .claude/agents/ created (developer, designer, marketing)');
-  console.log('  ✅ .claude/workflows/ created (local-dev, build-and-ship, marketing-launch)');
+  console.log('  ✅ .claude/agents/ created (developer, designer, marketing, crm)');
+  console.log('  ✅ .claude/workflows/ created (local-dev, build-and-ship, marketing-launch, crm-setup)');
   console.log('  ✅ .claude/context/ created (for external API docs)');
 
   // 3. Copy lib files that don't exist yet
@@ -179,8 +179,8 @@ function runInit() {
 
 What was added:
   CLAUDE.md              → Claude agent router (edit as your project evolves)
-  .claude/agents/        → developer.md, designer.md, marketing.md
-  .claude/workflows/     → local-dev.md, build-and-ship.md, marketing-launch.md
+  .claude/agents/        → developer.md, designer.md, marketing.md, crm.md
+  .claude/workflows/     → local-dev.md, build-and-ship.md, marketing-launch.md, crm-setup.md
   .claude/context/       → Store external API docs here (auto-populated by Claude)
   lib/                   → analytics, purchases, notifications wrappers (if missing)
   marketing/             → Output directories for screenshots, videos, UGC

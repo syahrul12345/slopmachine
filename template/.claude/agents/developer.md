@@ -130,6 +130,8 @@ supabase/
   config.toml           # Local Supabase config
   migrations/           # SQL migration files
   seed.sql              # Local dev seed data
-landing/                # Next.js landing page
+landing/                # Next.js landing page + CRM admin
+  app/admin/            # CRM admin dashboard (auth-guarded)
+  app/api/crm/          # CRM API routes
 assets/                 # App icons, splash screens
 ```
