@@ -7,6 +7,15 @@ const { execSync } = require('child_process');
 const command = process.argv[2];
 const templateDir = path.join(__dirname, '..', 'template');
 
+// --- Design styles ---
+
+const DESIGN_STYLES = {
+  minimal:   { label: 'Minimal / Clean — Whitespace-driven, subtle micro-interactions (Notion, iA Writer)', file: 'design-minimal.md' },
+  editorial: { label: 'Editorial / Bold — Typography dominance, asymmetric layouts, personality (dbrand, Apple)', file: 'design-editorial.md' },
+  immersive: { label: 'Immersive / Motion — Scroll animations, GSAP, 3D, cinematic (Linear, Stripe)', file: 'design-immersive.md' },
+  brutalist: { label: 'Brutalist / Experimental — Raw, rule-breaking, monospace, high contrast (Balenciaga)', file: 'design-brutalist.md' },
+};
+
 // --- Module definitions ---
 
 const MODULES = {
@@ -138,7 +147,7 @@ function resolveDependencies(selected) {
   return resolved;
 }
 
-function generateClaudeMd(projectName, modules) {
+function generateClaudeMd(projectName, modules, designStyle) {
   const lines = [];
 
   lines.push(`# ${projectName}`);
@@ -179,6 +188,16 @@ function generateClaudeMd(projectName, modules) {
   }
   lines.push('');
 
+  // Design style
+  if (designStyle) {
+    const styleInfo = DESIGN_STYLES[designStyle];
+    lines.push('## Design Style');
+    lines.push(`- Style: **${designStyle}**`);
+    lines.push(`- Rules: \`.claude/agents/${styleInfo.file}\``);
+    lines.push('- **ALL design and UI work must follow the design style rules.** Load the style file before any design task.');
+    lines.push('');
+  }
+
   // Agent routing
   lines.push('## Agent Routing');
   lines.push('Load agent files based on your task:');
@@ -190,7 +209,7 @@ function generateClaudeMd(projectName, modules) {
   if (modules.has('payments')) lines.push('- **Payments setup**: load `.claude/agents/payments.md`');
   if (modules.has('push')) lines.push('- **Push notifications**: load `.claude/agents/push.md`');
   if (modules.has('analytics')) lines.push('- **Analytics setup**: load `.claude/agents/analytics.md`');
-  if (modules.has('mobile')) lines.push('- **Design tasks**: load `.claude/agents/designer.md`');
+  if (modules.has('mobile') || modules.has('landing')) lines.push('- **Design tasks**: load `.claude/agents/designer.md` + active design style file');
   lines.push('- **Marketing tasks**: load `.claude/agents/marketing.md`');
   lines.push('- **Multi-step workflows**: see `.claude/workflows/`');
   lines.push('');
@@ -299,12 +318,25 @@ async function promptModules() {
     console.log(`  Auto-enabled: ${autoAdded.map(m => m).join(', ')} (required by dependencies)`);
   }
 
-  return resolved;
+  // Prompt for design style if building anything visual
+  let designStyle = null;
+  if (resolved.has('mobile') || resolved.has('landing')) {
+    const { style } = await inquirer.prompt([{
+      type: 'list',
+      name: 'style',
+      message: 'Design style for your app/landing page?',
+      choices: Object.entries(DESIGN_STYLES).map(([k, v]) => ({ name: v.label, value: k })),
+    }]);
+    designStyle = style;
+    console.log(`  Design style: ${designStyle}`);
+  }
+
+  return { modules: resolved, designStyle };
 }
 
 // --- Copy module files ---
 
-function copyModuleFiles(targetDir, projectName, modules, skipExisting = false) {
+function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExisting = false) {
   // Collect all files needed
   const agents = new Set(['marketing.md']); // always included
   const workflows = new Set(['local-dev.md', 'marketing-launch.md']); // always included
@@ -318,6 +350,12 @@ function copyModuleFiles(targetDir, projectName, modules, skipExisting = false) 
     files.workflows.forEach(f => workflows.add(f));
     files.libs.forEach(f => libs.add(f));
     files.dirs.forEach(f => dirs.add(f));
+  }
+
+  // Add design style file + designer.md if visual modules are active
+  if (designStyle && DESIGN_STYLES[designStyle]) {
+    agents.add(DESIGN_STYLES[designStyle].file);
+    agents.add('designer.md');
   }
 
   // Copy agents
@@ -446,19 +484,19 @@ async function runInit() {
   console.log(`\n🔧 Adding slopmachine configs to "${projectName}"...\n`);
 
   // Prompt for modules
-  const modules = await promptModules();
+  const { modules, designStyle } = await promptModules();
 
   // Generate and write CLAUDE.md
   const claudeMdDest = path.join(targetDir, 'CLAUDE.md');
   if (fs.existsSync(claudeMdDest)) {
     console.log('  ⏭  CLAUDE.md already exists — skipping (you can merge manually)');
   } else {
-    fs.writeFileSync(claudeMdDest, generateClaudeMd(projectName, modules));
+    fs.writeFileSync(claudeMdDest, generateClaudeMd(projectName, modules, designStyle));
     console.log('  ✅ CLAUDE.md created');
   }
 
   // Copy module files
-  copyModuleFiles(targetDir, projectName, modules, true);
+  copyModuleFiles(targetDir, projectName, modules, designStyle, true);
 
   // Copy .env.template if no .env.local exists
   const envLocalPath = path.join(targetDir, '.env.local');
@@ -501,7 +539,7 @@ async function runCreate(projectName) {
   console.log(`\n🚀 Creating ${projectName}...\n`);
 
   // Prompt for modules
-  const modules = await promptModules();
+  const { modules, designStyle } = await promptModules();
 
   // Create project directory
   fs.mkdirSync(targetDir, { recursive: true });
@@ -538,11 +576,11 @@ async function runCreate(projectName) {
   }
 
   // Generate CLAUDE.md
-  fs.writeFileSync(path.join(targetDir, 'CLAUDE.md'), generateClaudeMd(projectName, modules));
+  fs.writeFileSync(path.join(targetDir, 'CLAUDE.md'), generateClaudeMd(projectName, modules, designStyle));
   console.log('  ✅ CLAUDE.md generated');
 
   // Copy module-specific files
-  copyModuleFiles(targetDir, projectName, modules);
+  copyModuleFiles(targetDir, projectName, modules, designStyle);
 
   // Copy .env
   const envSrc = path.join(templateDir, '.env.template');
