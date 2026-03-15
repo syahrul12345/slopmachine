@@ -22,20 +22,22 @@ const MODULES = {
   mobile:    { label: 'Mobile app (Expo + React Native)', group: 'product' },
   landing:   { label: 'Landing page (Next.js)', group: 'product' },
   crm:       { label: 'CRM (Supabase admin dashboard)', group: 'product' },
-  auth:      { label: 'Auth (Apple + Google Sign-In)', group: 'feature' },
-  payments:  { label: 'Payments (RevenueCat)', group: 'feature' },
-  push:      { label: 'Push notifications', group: 'feature' },
-  analytics: { label: 'Analytics', group: 'feature' },
+  auth:       { label: 'Auth (Apple + Google Sign-In)', group: 'feature' },
+  payments:   { label: 'Payments (RevenueCat)', group: 'feature' },
+  push:       { label: 'Push notifications', group: 'feature' },
+  analytics:  { label: 'Analytics', group: 'feature' },
+  ecommerce:  { label: 'Ecommerce (Shopify)', group: 'feature' },
 };
 
 // Auto-dependencies: if you pick X, you also get Y
 const DEPENDENCIES = {
   crm:      ['landing', 'auth'],
   payments: ['mobile', 'auth'],
-  push:     ['mobile'],
-  auth:     [],
-  mobile:   [],
-  landing:  [],
+  push:      ['mobile'],
+  ecommerce: [],
+  auth:      [],
+  mobile:    [],
+  landing:   [],
   analytics: [],
 };
 
@@ -87,6 +89,13 @@ const MODULE_FILES = {
     agents: ['analytics.md'],
     workflows: [],
     libs: ['analytics.ts'],
+    dirs: [],
+    templates: [],
+  },
+  ecommerce: {
+    agents: ['ecommerce.md'],
+    workflows: [],
+    libs: ['shopify.ts'],
     dirs: [],
     templates: [],
   },
@@ -177,6 +186,7 @@ function generateClaudeMd(projectName, modules, designStyle) {
     lines.push('- CRM: Supabase + Next.js admin dashboard (`landing/app/admin/`)');
   }
   if (modules.has('payments')) lines.push('- Payments: RevenueCat');
+  if (modules.has('ecommerce')) lines.push('- Ecommerce: Shopify (Storefront API + Admin API)');
   if (modules.has('analytics')) lines.push('- Analytics: TBD (configure in `lib/analytics.ts`)');
   lines.push('');
 
@@ -209,6 +219,7 @@ function generateClaudeMd(projectName, modules, designStyle) {
   if (modules.has('payments')) lines.push('- **Payments setup**: load `.claude/agents/payments.md`');
   if (modules.has('push')) lines.push('- **Push notifications**: load `.claude/agents/push.md`');
   if (modules.has('analytics')) lines.push('- **Analytics setup**: load `.claude/agents/analytics.md`');
+  if (modules.has('ecommerce')) lines.push('- **Ecommerce / Shopify**: load `.claude/agents/ecommerce.md`');
   if (modules.has('mobile') || modules.has('landing')) lines.push('- **Design tasks**: load `.claude/agents/designer.md` + active design style file');
   lines.push('- **Marketing tasks**: load `.claude/agents/marketing.md`');
   lines.push('- **Multi-step workflows**: see `.claude/workflows/`');
@@ -234,6 +245,9 @@ function generateClaudeMd(projectName, modules, designStyle) {
   if (modules.has('payments')) {
     lines.push('| RevenueCat | In-app purchases | API key per platform | `.claude/context/revenuecat.md` |');
   }
+  if (modules.has('ecommerce')) {
+    lines.push('| Shopify | Ecommerce (products, checkout, orders) | Storefront + Admin API tokens | `.claude/context/shopify.md` |');
+  }
   lines.push('');
 
   // Credentials
@@ -248,6 +262,11 @@ function generateClaudeMd(projectName, modules, designStyle) {
   }
   if (modules.has('analytics')) {
     creds.push('- [ ] Analytics API key');
+  }
+  if (modules.has('ecommerce')) {
+    creds.push('- [ ] Shopify store domain');
+    creds.push('- [ ] Shopify Storefront API access token');
+    creds.push('- [ ] Shopify Admin API access token');
   }
   if (modules.has('mobile') || modules.has('auth') || modules.has('crm')) {
     creds.push('- [ ] Supabase project URL + keys (for production)');
@@ -301,6 +320,7 @@ async function promptModules() {
     featureChoices.push({ name: MODULES.push.label, value: 'push' });
   }
   featureChoices.push({ name: MODULES.analytics.label, value: 'analytics' });
+  featureChoices.push({ name: MODULES.ecommerce.label, value: 'ecommerce' });
 
   const { features } = await inquirer.prompt([{
     type: 'checkbox',
