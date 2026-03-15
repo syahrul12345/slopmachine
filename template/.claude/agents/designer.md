@@ -48,18 +48,43 @@ Save the design system to `.claude/context/design-system.md` so the developer ag
   - Phone: 1080x1920px (or 16:9 ratio)
   - Tablet: 1200x1920px (7") or 1600x2560px (10")
 
+## SVG Feature Illustrations
+**IMPORTANT**: Build feature illustrations as SVG React components. These are the highest-ROI design assets because they're reused across:
+- Landing page hero and feature sections
+- Remotion video scenes (marketing videos, reels)
+- App Store screenshot overlays
+
+### How to create them
+1. Create React components that render SVGs using brand colors
+2. Make them work both statically (landing page) and animated (Remotion with `useCurrentFrame()`)
+3. Save to `marketing/video/src/components/illustrations/`
+4. Export static versions to `landing/public/illustrations/`
+
+### Rules
+- Vector-based (SVG) — must look sharp at any resolution
+- Use brand colors from the design system
+- Keep them simple and iconic — they'll be viewed at small sizes on mobile
+- Each illustration should represent one feature or concept
+
 ## Design Workflow
 1. Review the app's current state (read through `app/` directory)
 2. Understand the core user flows
-3. Propose design improvements with specific component changes
-4. Ensure consistency with the design system
-5. Consider both light and dark mode (`userInterfaceStyle: "automatic"` in app.json)
+3. **Create SVG feature illustrations** (reusable across landing + marketing videos)
+4. Propose design improvements with specific component changes
+5. Ensure consistency with the design system
+6. Consider both light and dark mode (`userInterfaceStyle: "automatic"` in app.json)
+7. **Hand off illustrations to marketing agent** for Remotion video production
 
 ## Working with the Developer Agent
 - Reference existing components by file path when suggesting changes
 - Propose styles using React Native's StyleSheet patterns
 - Consider Reanimated for animations (already in dependencies)
 - Use react-native-gesture-handler for gesture interactions (already in dependencies)
+
+## Working with the Marketing Agent
+- Design illustrations that animate well in Remotion (simple shapes, clear silhouettes)
+- Provide brand colors in `marketing/video/src/styles/colors.ts`
+- App Store screenshots can be rendered via Remotion (device mockup + text + gradient) instead of raw simulator captures
 
 ## App Store Screenshot Guidelines
 - Show the app in action with real-looking data (not placeholder text)
@@ -68,3 +93,4 @@ Save the design system to `.claude/context/design-system.md` so the developer ag
 - Add brief captions/headlines above or below
 - First screenshot is most important — show the core value proposition
 - Keep text minimal and large enough to read in the store listing
+- **Consider using Remotion to render stylized screenshots programmatically** — device mockup + feature text + gradient background
