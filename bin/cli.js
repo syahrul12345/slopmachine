@@ -45,7 +45,7 @@ const DEPENDENCIES = {
 const MODULE_FILES = {
   mobile: {
     agents: ['mobile.md', 'designer.md'],
-    workflows: ['build-and-ship.md'],
+    workflows: [],
     libs: ['supabase.ts'],
     dirs: ['app', 'supabase'],
     templates: ['app.json.template', 'eas.json', 'babel.config.js'],
@@ -359,7 +359,7 @@ async function promptModules() {
 function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExisting = false) {
   // Collect all files needed
   const agents = new Set(['marketing.md']); // always included
-  const workflows = new Set(['local-dev.md', 'marketing-launch.md']); // always included
+  const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md']); // always included
   const libs = new Set();
   const dirs = new Set();
 

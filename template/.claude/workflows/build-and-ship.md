@@ -1,72 +1,82 @@
 # Build & Ship Workflow
 
-Sequential workflow from dev complete → App Store review.
+Module-aware deployment workflow. Check which modules are active in CLAUDE.md → "Active Modules" and run only the relevant sections.
 
-## Pre-flight Checklist
+---
 
-### Auth
-- [ ] Apple Sign-In configured (Apple Developer + Supabase + app.json)
-- [ ] Google Sign-In configured (Google Cloud + Supabase + app)
-- [ ] Auth tested on physical device
+## Section A: Database & Backend (if using Supabase)
+**Applies to: mobile, auth, crm, push, ecommerce (with webhooks)**
 
-### Push Notifications
-- [ ] `expo-notifications` configured
-- [ ] `push_tokens` table exists in database
-- [ ] Push sending mechanism (Edge Function or Expo Push API) implemented
-- [ ] Tested on physical device
-
-### Payments
-- [ ] RevenueCat API keys configured
-- [ ] Products/offerings created in RevenueCat dashboard
-- [ ] Paywall screen implemented
-- [ ] Subscription webhook → Supabase Edge Function set up
-- [ ] Test purchases verified in sandbox
-
-### Analytics
-- [ ] Analytics provider configured in `lib/analytics.ts`
-- [ ] Core events tracked: `app_open`, `sign_up`, `sign_in`, `purchase`, `screen_view`
-- [ ] Events verified in analytics dashboard
-
-### Database
+### Pre-flight
 - [ ] All migrations committed to `supabase/migrations/`
 - [ ] `seed.sql` has representative test data
 - [ ] Row Level Security enabled on all tables
 - [ ] Production Supabase project created and configured
+- [ ] Edge Functions deployed (if any)
 
----
-
-## Step 1: Verify Migrations
+### Deploy
 ```bash
 supabase db reset          # Test clean migration run locally
 supabase db push --linked  # Push to production Supabase
+supabase functions deploy   # Deploy Edge Functions (if any)
 ```
 
-## Step 2: Update Production Environment
-- Set production env vars in EAS secrets or `eas.json`
-- Verify Supabase production URL and keys
-- Verify RevenueCat production API keys
-- Verify analytics production API key
+### Verify
+- [ ] Production database has correct schema
+- [ ] RLS policies work (test with anon key)
+- [ ] Auth providers configured in production Supabase dashboard
 
-## Step 3: Test on Simulator
-Run the app on iOS simulator and walk through every flow:
+---
+
+## Section B: Mobile App (if `mobile` is active)
+
+### Pre-flight
+- [ ] App runs on simulator without crashes
+- [ ] All active features verified (see checklist below)
+- [ ] Bundle ID set in `app.json`
+- [ ] Production environment variables configured in EAS
+
+### B1: Feature Verification
+Run the app on iOS simulator and test every active module:
 
 ```bash
 npx expo run:ios
 ```
 
-### Test checklist
+**Core app:**
 - [ ] App launches without crash
+- [ ] Core functionality works end-to-end
+- [ ] All screens render correctly
+- [ ] Deep links work (`{{PROJECT_NAME}}://`)
+
+**Auth (if active):**
 - [ ] Sign in with Apple works
 - [ ] Sign in with Google works
-- [ ] Core app functionality works end-to-end
-- [ ] Push notification permission prompt appears
+- [ ] Sign out works
+- [ ] Auth state persists across app restart
+
+**Push (if active):**
+- [ ] Permission prompt appears
+- [ ] Push token saved to database
+- [ ] Test push received on device
+
+**Payments (if active):**
 - [ ] Paywall displays offerings correctly
 - [ ] Test purchase completes in sandbox
-- [ ] Analytics events fire (check console logs or dashboard)
-- [ ] Deep links work (`{{PROJECT_NAME}}://`)
-- [ ] All screens render correctly on different device sizes
+- [ ] Subscription status updates correctly
+- [ ] RevenueCat webhook → Supabase works
 
-Boot multiple simulators to test on different screens:
+**Analytics (if active):**
+- [ ] Core events fire: `app_open`, `sign_up`, `sign_in`, `purchase`, `screen_view`
+- [ ] Events visible in analytics dashboard
+
+**Ecommerce (if active):**
+- [ ] Products load from Shopify
+- [ ] Product detail displays correctly
+- [ ] Cart works (add, remove, update quantity)
+- [ ] Checkout opens Shopify checkout URL
+
+**Test on multiple device sizes:**
 ```bash
 xcrun simctl boot "iPhone 15 Pro Max"
 xcrun simctl boot "iPhone 15"
@@ -75,12 +85,8 @@ xcrun simctl boot "iPhone SE (3rd generation)"
 
 **STOP HERE if anything fails. Fix issues before proceeding.**
 
-## Step 4: Capture Screenshots & Marketing Content
-Once the app is verified on simulator, capture everything needed for App Store review and marketing.
-
-### Screenshots for App Store
+### B2: Capture Screenshots
 ```bash
-# Capture on all required device sizes
 xcrun simctl io "iPhone 15 Pro Max" screenshot marketing/screenshots/iphone-6.7/screen-1.png
 xcrun simctl io "iPhone 15" screenshot marketing/screenshots/iphone-6.1/screen-1.png
 xcrun simctl io "iPhone SE (3rd generation)" screenshot marketing/screenshots/iphone-5.5/screen-1.png
@@ -93,103 +99,156 @@ Capture these screens (navigate to each in the simulator first):
 4. **Key feature #3** — third feature or social proof
 5. **Paywall/premium** — if applicable
 
-See `.claude/agents/marketing.md` for exact dimensions.
+**Pro tip:** Use Remotion to render stylized screenshots — device mockup + feature text + gradient background. See `.claude/workflows/marketing-launch.md`.
 
-### Demo video
+### B3: Build .ipa
 ```bash
-xcrun simctl io booted recordVideo marketing/videos/raw/demo-raw.mp4
-# Walk through key flows, Ctrl+C to stop
-```
-
-Process with ffmpeg — see `.claude/workflows/marketing-launch.md` for full commands.
-
-### UGC scripts
-Run the marketing agent to generate UGC scripts in `marketing/ugc/`.
-
-### App Store listing copy
-Run the marketing agent to generate:
-- `marketing/store-listing/ios-listing.md` (title, subtitle, description, keywords)
-- `marketing/store-listing/android-listing.md`
-
-**All review content is saved in `marketing/` — you can resume submission anytime.**
-
-## Step 5: Build .ipa Locally
-```bash
-# Development build (for testing on device)
-eas build --profile development --platform ios --local
-
 # Production build (for App Store / TestFlight)
 eas build --profile production --platform ios --local
-```
 
-The `--local` flag builds on your machine instead of EAS servers. Output is an `.ipa` file.
-
-If local build fails, fall back to cloud build:
-```bash
+# If local build fails, fall back to cloud
 eas build --profile production --platform ios
 ```
 
-## Step 6: Push to TestFlight
+### B4: Push to TestFlight
 ```bash
-# If built locally, submit the .ipa
+# If built locally
 eas submit --platform ios --path ./build-*.ipa
 
-# If built on EAS cloud, just submit
+# If built on EAS cloud
 eas submit --platform ios
 ```
 
-### TestFlight verification
+**TestFlight verification:**
 - [ ] App installs from TestFlight
 - [ ] All flows work on physical device
-- [ ] Auth works (Apple + Google)
-- [ ] Push notifications received
-- [ ] In-app purchases work in sandbox
 - [ ] No crashes in TestFlight logs
 
-## Step 7: Submit for App Store Review
+### B5: Submit for App Store Review
 
-**⚠️ ASK DEVELOPER BEFORE PROCEEDING** — Confirm ready to submit. All review content should already be saved from Step 4 in `marketing/store-listing/`. This step can be run independently at any time.
+**⚠️ ASK DEVELOPER BEFORE PROCEEDING**
 
-### App Store Review Content Checklist
-Verify these are ready (all should be in `marketing/`):
+Verify review content is ready (all should be in `marketing/`):
 - [ ] App icon uploaded (1024x1024)
 - [ ] Screenshots uploaded for all required device sizes
 - [ ] App preview video uploaded (optional but recommended)
 - [ ] Title (max 30 chars) — from `marketing/store-listing/ios-listing.md`
-- [ ] Subtitle (max 30 chars) — from `marketing/store-listing/ios-listing.md`
-- [ ] Description — from `marketing/store-listing/ios-listing.md`
-- [ ] Keywords (100 chars max) — from `marketing/store-listing/ios-listing.md`
+- [ ] Subtitle (max 30 chars)
+- [ ] Description
+- [ ] Keywords (100 chars max)
 - [ ] Category (primary + secondary)
 - [ ] Privacy policy URL
 - [ ] Support URL
 - [ ] App Review notes (login credentials for reviewer if needed)
 
-### Submit
-1. Go to App Store Connect
-2. Select your app → prepare new version
-3. Upload screenshots and metadata from `marketing/store-listing/ios-listing.md`
-4. Fill in review information
-5. Submit for review
-
-Or via CLI:
+Submit via App Store Connect or:
 ```bash
 eas submit --platform ios
 ```
 
-**Note:** Steps 4-7 can be re-run independently. Marketing content persists in `marketing/` and can be updated without rebuilding.
+---
 
-## Step 8: Landing Page Deployment
+## Section C: Landing Page (if `landing` is active)
+
+### Pre-flight
+- [ ] `cd landing && npm run build` succeeds with no errors
+- [ ] All pages render correctly
+- [ ] Meta tags / OG tags configured for SEO
+- [ ] Analytics tracking works (if analytics module active)
+- [ ] Responsive design verified (mobile, tablet, desktop)
+
+**Auth (if active on landing):**
+- [ ] Sign in / sign up works on web
+- [ ] Auth redirect URLs configured for production domain
+
+**CRM admin (if `crm` is active):**
+- [ ] Admin routes protected (auth required)
+- [ ] Contact, deal, interaction CRUD works
+- [ ] Dashboard loads with real or seeded data
+- [ ] RLS policies restrict admin-only access
+
+**Ecommerce (if active on landing):**
+- [ ] Product listing page loads from Shopify
+- [ ] Product detail pages work
+- [ ] Cart functionality works
+- [ ] Checkout redirects to Shopify correctly
+- [ ] Post-checkout redirect back to landing works
+
+**Referral redirects (if mobile is also active):**
+- [ ] `landing/app/r/[code]/route.ts` redirects to correct app store URL
+- [ ] Deep link fallback works
+
+### Deploy
 ```bash
 cd landing
 npm run build
-# Deploy to Vercel, Netlify, or your hosting
-```
-- Update store URLs in `landing/app/r/[code]/route.ts` with real App Store / Play Store links
-- Verify referral deep links work
 
-## Post-Ship
-- [ ] Verify app installs from App Store (once approved)
-- [ ] Verify referral links redirect correctly
+# Deploy to Vercel
+vercel --prod
+
+# Or Netlify
+netlify deploy --prod --dir=.next
+
+# Or any hosting — the output is a standard Next.js build
+```
+
+### Post-deploy
+- [ ] Production URL loads correctly
+- [ ] SSL certificate active
+- [ ] Custom domain configured (if applicable)
+- [ ] Environment variables set in hosting provider
+- [ ] Update App Store / Play Store URLs in landing page (if mobile is active)
+
+---
+
+## Section D: Ecommerce Store (if `ecommerce` is active)
+
+### Pre-flight (Shopify)
+- [ ] Products created in Shopify admin
+- [ ] Shipping zones and rates configured
+- [ ] Payment providers set up (Shopify Payments, Stripe, etc.)
+- [ ] Storefront API access token is production-ready
+- [ ] Webhook endpoints configured and verified
+
+### Verify
+- [ ] Products display correctly in app/landing
+- [ ] Checkout flow completes end-to-end
+- [ ] Order webhooks fire and sync to Supabase (if configured)
+- [ ] Inventory updates reflect in app/landing
+
+---
+
+## Section E: Marketing Assets
+
+Run after deployment (or in parallel with review submission):
+
+1. **Store listing copy** — run marketing agent to generate `marketing/store-listing/`
+2. **Demo video** — use Remotion pipeline (`.claude/workflows/marketing-launch.md`)
+3. **UGC scripts** — run marketing agent to generate `marketing/ugc/`
+4. **Social reels** — render via Remotion
+
+All assets saved to `marketing/` — can be updated independently at any time.
+
+---
+
+## Quick Reference: Which Sections to Run
+
+| Modules selected | Run sections |
+|---|---|
+| Mobile only | A → B → E |
+| Landing only | C → E |
+| Mobile + Landing | A → B → C → E |
+| Landing + CRM | A → C → E |
+| Landing + Ecommerce | C → D → E |
+| Landing + CRM + Ecommerce | A → C → D → E |
+| Mobile + Landing + CRM + Ecommerce | A → B → C → D → E |
+| Mobile + Ecommerce | A → B → D → E |
+
+---
+
+## Post-Ship (all projects)
+- [ ] Verify production deployment works end-to-end
 - [ ] Monitor analytics dashboard for launch metrics
-- [ ] Monitor crash reports
+- [ ] Monitor crash reports (mobile) or error logs (web)
+- [ ] Test from a fresh device / incognito browser
 - [ ] Plan first update based on user feedback
