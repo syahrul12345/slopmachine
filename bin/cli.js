@@ -639,12 +639,26 @@ async function runCreate(projectName) {
       }
     }
   } else {
-    // Minimal package.json for non-mobile projects
-    fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify({
+    // Root package.json for non-mobile projects with convenience scripts
+    const rootPkg = {
       name: projectName,
       version: '1.0.0',
       private: true,
-    }, null, 2));
+      scripts: {},
+    };
+    if (modules.has('landing')) {
+      rootPkg.scripts.dev = 'cd landing && npm run dev';
+      rootPkg.scripts.build = 'cd landing && npm run build';
+      rootPkg.scripts.start = 'cd landing && npm run start';
+    }
+    if (modules.has('auth') || modules.has('crm') || modules.has('mobile')) {
+      rootPkg.scripts['db:start'] = 'supabase start';
+      rootPkg.scripts['db:stop'] = 'supabase stop';
+      rootPkg.scripts['db:reset'] = 'supabase db reset';
+      rootPkg.scripts['db:diff'] = 'supabase db diff -f';
+      rootPkg.scripts['db:push'] = 'supabase db push';
+    }
+    fs.writeFileSync(path.join(targetDir, 'package.json'), JSON.stringify(rootPkg, null, 2));
   }
 
   // Generate CLAUDE.md
