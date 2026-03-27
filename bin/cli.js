@@ -723,8 +723,11 @@ ${modules.has('mobile') || modules.has('auth') || modules.has('crm') ? `
 ` : ''}${modules.has('mobile') ? `
   # Start the app
   npx expo start
-` : ''}${modules.has('landing') ? `
+` : ''}${modules.has('landing') && !modules.has('mobile') ? `
   # Start the landing page
+  npm run dev
+` : ''}${modules.has('landing') && modules.has('mobile') ? `
+  # Start the landing page (in a separate terminal)
   cd landing && npm run dev
 ` : ''}
   # Open Claude and start building!
