@@ -4,6 +4,14 @@
 
 ---
 
+## Step 0: Run /teach-impeccable (if not done yet)
+
+**If `.impeccable.md` does not exist in the project root**, run the `/teach-impeccable` skill first. It interactively gathers design context from the codebase and the developer — users, brand personality, aesthetic direction, accessibility requirements — and saves it to `.impeccable.md`. This feeds into all impeccable design skills (`/audit`, `/critique`, `/polish`, etc.) for the rest of the project.
+
+This only needs to run once per project.
+
+---
+
 ## Step 1: Understand the Product
 
 Before touching anything visual, you need to understand what you're designing for. Ask the developer:

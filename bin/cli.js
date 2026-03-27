@@ -256,6 +256,9 @@ function generateClaudeMd(projectName, modules, designStyle) {
   lines.push('- `/overdrive` — extraordinary effects (beta)');
   lines.push('- Reference guides in `.claude/skills/frontend-design/reference/` (typography, color, spatial, motion, interaction, responsive, UX writing)');
   lines.push('');
+  lines.push('**First time setup:** Run `/teach-impeccable` to interactively set up design context for this project.');
+  lines.push('**Before any UI work:** Run `.claude/workflows/design-kickoff.md` to establish product brief → page narrative → design system.');
+  lines.push('');
 
   // External dependencies
   lines.push('## External Dependencies');
@@ -600,7 +603,9 @@ async function runInit() {
 
 Next steps:
   1. Review CLAUDE.md and update the Project section
-  2. Run \`claude\` and start building!
+  2. Run \`claude\`
+  3. Run /teach-impeccable to set up design context
+  4. Run the design-kickoff workflow before writing any UI
 `);
 }
 
@@ -741,6 +746,9 @@ ${modules.has('mobile') || modules.has('auth') || modules.has('crm') ? `
 ` : ''}
   # Open Claude and start building!
   claude
+
+  # First thing in Claude, run /teach-impeccable to set up design context
+  # Then run the design-kickoff workflow before writing any UI
 
 📋 Read CLAUDE.md for the full project setup guide.
 `);
