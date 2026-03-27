@@ -403,7 +403,7 @@ async function promptModules() {
 function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExisting = false) {
   // Collect all files needed
   const agents = new Set(['marketing.md']); // always included
-  const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md']); // always included
+  const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md', 'design-kickoff.md']); // always included
   const libs = new Set();
   const dirs = new Set();
 
@@ -449,6 +449,15 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
   fs.mkdirSync(contextDir, { recursive: true });
   if (!fs.existsSync(path.join(contextDir, '.gitkeep'))) {
     fs.writeFileSync(path.join(contextDir, '.gitkeep'), '');
+  }
+  // Copy design catalogs if visual modules active
+  if (designStyle) {
+    for (const catalog of ['design-style-catalog.md', 'threejs-catalog.md']) {
+      const catalogSrc = path.join(templateDir, '.claude', 'context', catalog);
+      if (fs.existsSync(catalogSrc)) {
+        copyFile(catalogSrc, path.join(contextDir, catalog), projectName, skipExisting);
+      }
+    }
   }
   console.log('  ✅ .claude/context/ created');
 
