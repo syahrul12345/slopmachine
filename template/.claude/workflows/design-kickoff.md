@@ -110,11 +110,11 @@ Example for a consumer app:
 
 **Sections should FLOW, not stack.** Define how each section connects to the next:
 
-- **Visual continuity**: use the same background color across 2-3 sections, only changing when the narrative shifts
+- **ONE page background**: the entire page shares ONE background color. Do NOT assign per-section backgrounds. Sections are separated by spacing, layout shifts, and typography — not by painting every section a different color. (Max 1-2 exceptions per page for deliberate narrative breaks like a CTA band.)
 - **Content bridges**: the last line of one section sets up the next ("But what about X?" → next section answers X)
 - **Layout variety**: if section 1 is centered text, section 2 should be asymmetric. If 2 is a grid, 3 should be full-width. Never repeat the same layout twice in a row.
 - **Progressive disclosure**: each section reveals more depth — start broad, get specific
-- **Color flow**: instead of alternating light/dark, use subtle background tint changes (#FAFAF8 → #F5F0E8 → #FAF8F5) that create natural rhythm without harsh contrast
+- **Spacing as separation**: use 120-200px between major sections. Whitespace IS the divider. You do not need color changes.
 
 Save the section plan to `.claude/context/page-architecture.md`.
 
@@ -131,9 +131,8 @@ Create `.claude/context/design-system.md`:
 Primary:        #_____ (main brand color — derived from product personality)
 Secondary:      #_____ (supporting color)
 Accent:         #_____ (CTAs, highlights)
-Background:     #_____ (page background — NOT pure white, NOT pure black)
-Surface:        #_____ (cards, elevated elements)
-Surface Alt:    #_____ (alternate section background — subtle shift, NOT opposite)
+Background:     #_____ (THE page background — one color for the whole page, NOT pure white, NOT pure black)
+Surface:        #_____ (cards, elevated elements — slightly different from background)
 Text Primary:   #_____ (headlines — NOT pure black)
 Text Secondary: #_____ (body, descriptions)
 Text Muted:     #_____ (captions, hints)

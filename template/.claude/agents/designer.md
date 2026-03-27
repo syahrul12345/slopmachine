@@ -32,8 +32,25 @@ AI agents have a strong tendency to default to dark backgrounds and black-heavy 
 - **Ask the developer** "Light or dark theme?" before choosing — do not assume dark
 - When in doubt, go lighter. Light themes are more universally usable and professional.
 
+## ⚠️ CRITICAL: Section Background Rule
+**DO NOT give individual sections their own background color.** This is the single biggest source of generic-looking pages. When every `<section>` has a different `bg-*` class, the page looks like stacked colored blocks — regardless of the palette.
+
+**The rule:** The PAGE has ONE background color. Sections live on it. Visual separation comes from spacing, typography hierarchy, layout changes, and content — NOT from painting each section a different color.
+
+**Allowed exceptions (use sparingly, max 1-2 per page):**
+- A single accent section (e.g., a CTA band or testimonial) can have a different background IF it's a deliberate narrative break
+- A footer can have a slightly different tone
+- A full-bleed image/video section naturally has its own background
+
+**How to create visual rhythm WITHOUT background banding:**
+- Generous whitespace between sections (120-200px)
+- Change the layout shape (centered → asymmetric → full-width → grid)
+- Use typography scale changes to signal new sections
+- Horizontal rules or subtle borders when needed
+- Content density variation (sparse hero → dense feature grid → breathing room → CTA)
+
 ## ⚠️ Layout Anti-Patterns — NEVER DO THESE
-AI agents produce the same generic page every time. You MUST avoid:
+- ❌ **Per-section background colors** (the #1 cause of generic pages — see rule above)
 - ❌ **Hero → 3 feature cards → CTA → footer** (the "default template" layout)
 - ❌ **Dark section → light section → dark section** banding (zebra striping)
 - ❌ **Generic "Welcome to [Product]"** hero headline
@@ -45,9 +62,9 @@ AI agents produce the same generic page every time. You MUST avoid:
 - ❌ **Pure black backgrounds** for "dramatic" sections
 
 **Instead:**
+- ONE page background. Sections flow on it, separated by spacing and layout changes.
 - Start with whatever hooks attention (could be a demo, a bold question, an animation — NOT always a headline)
 - Each section must answer: "Why does this exist? What does the user feel after reading it?"
-- Section backgrounds should be subtle tint shifts (5-10%), not opposite extremes
 - Vary layout per section: if one is centered, next is asymmetric; if one is a grid, next is full-width
 - Read `.claude/context/page-architecture.md` — the narrative defines the structure, not a template
 
