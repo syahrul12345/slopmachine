@@ -10,10 +10,26 @@ const templateDir = path.join(__dirname, '..', 'template');
 // --- Design styles ---
 
 const DESIGN_STYLES = {
-  minimal:   { label: 'Minimal / Clean — Whitespace-driven, subtle micro-interactions (Notion, iA Writer)', file: 'design-minimal.md' },
-  editorial: { label: 'Editorial / Bold — Typography dominance, asymmetric layouts, personality (dbrand, Apple)', file: 'design-editorial.md' },
-  immersive: { label: 'Immersive / Motion — Scroll animations, GSAP, 3D, cinematic (Linear, Stripe)', file: 'design-immersive.md' },
-  brutalist: { label: 'Brutalist / Experimental — Raw, rule-breaking, monospace, high contrast (Balenciaga)', file: 'design-brutalist.md' },
+  // --- Classic styles ---
+  minimal:                { label: 'Minimal / Clean — whitespace-driven, micro-interactions (Notion, iA Writer)', file: 'design-minimal.md', group: 'classic' },
+  editorial:              { label: 'Editorial / Bold — typography dominance, asymmetric layouts (dbrand, Apple)', file: 'design-editorial.md', group: 'classic' },
+  immersive:              { label: 'Immersive / Motion — scroll animations, GSAP, 3D, cinematic (Linear, Stripe)', file: 'design-immersive.md', group: 'classic' },
+  brutalist:              { label: 'Brutalist / Experimental — raw, rule-breaking, monospace (Balenciaga)', file: 'design-brutalist.md', group: 'classic' },
+  // --- AI Aesthetics (via acolorbright.com/en/insights/aesthetics-of-ai) ---
+  'off-white':            { label: 'Shades of Off-White — calm, warm, muted palettes (anthropic.com, sierra.ai, cursor.com)', file: 'design-off-white.md', group: 'ai-aesthetic' },
+  'organic-gradients':    { label: 'Organic Gradients — dimensional gradients with grain/texture (elevenlabs.io, perplexity.ai)', file: 'design-organic-gradients.md', group: 'ai-aesthetic' },
+  'digital-impressionism':{ label: 'Digital Impressionism — soft blurred forms, mood-focused (manus.im, pi.ai)', file: 'design-digital-impressionism.md', group: 'ai-aesthetic' },
+  'lomo':                 { label: 'Lomo Imagery — analog film, light leaks, anti-corporate (cursor.com, cohere.com)', file: 'design-lomo.md', group: 'ai-aesthetic' },
+  'contemporary-realism': { label: 'Contemporary Realism — photorealistic renders, tangible tech (intercom.com, retool.com)', file: 'design-contemporary-realism.md', group: 'ai-aesthetic' },
+  'sketch-scribble':      { label: 'Sketch & Scribble — hand-drawn, notebook feel (anthropic.com, notion.com)', file: 'design-sketch-scribble.md', group: 'ai-aesthetic' },
+  'academia':             { label: 'Non-Brand Academia — stripped-down, research paper aesthetic (sakana.ai, openai.com/research)', file: 'design-academia.md', group: 'ai-aesthetic' },
+  'technical-illustrations':{ label: 'Technical Illustrations — blueprints, diagrams, engineering (elevenlabs.io, openai.com/safety)', file: 'design-technical-illustrations.md', group: 'ai-aesthetic' },
+  'quirky-cute':          { label: 'Quirky Cuteness — mascots, playful, nerdy (sakana.ai, mistral.ai, modular.com)', file: 'design-quirky-cute.md', group: 'ai-aesthetic' },
+  'morphing-objects':     { label: 'Morphing Objects — floating evolving shapes, no fixed form (elevenlabs.io, fal.ai)', file: 'design-morphing-objects.md', group: 'ai-aesthetic' },
+  'futuristic-surrealism':{ label: 'Futuristic Surrealism — impossible worlds, dreamlike (retool.com, worldlabs.ai)', file: 'design-futuristic-surrealism.md', group: 'ai-aesthetic' },
+  'outer-space':          { label: 'Outer Space — cosmic, galaxies, celestial (x.ai, perplexity.ai, modular.com)', file: 'design-outer-space.md', group: 'ai-aesthetic' },
+  'ascii-pixels':         { label: 'ASCII & Pixels — retro pixel art, terminal aesthetic (midjourney.com, mistral.ai)', file: 'design-ascii-pixels.md', group: 'ai-aesthetic' },
+  'generative-art':       { label: 'Generative Art — algorithmic patterns, living systems (sakana.ai, fal.ai)', file: 'design-generative-art.md', group: 'ai-aesthetic' },
 };
 
 // --- Module definitions ---
@@ -341,11 +357,23 @@ async function promptModules() {
   // Prompt for design style if building anything visual
   let designStyle = null;
   if (resolved.has('mobile') || resolved.has('landing')) {
+    const classicChoices = Object.entries(DESIGN_STYLES)
+      .filter(([, v]) => v.group === 'classic')
+      .map(([k, v]) => ({ name: v.label, value: k }));
+    const aiChoices = Object.entries(DESIGN_STYLES)
+      .filter(([, v]) => v.group === 'ai-aesthetic')
+      .map(([k, v]) => ({ name: v.label, value: k }));
+
     const { style } = await inquirer.prompt([{
       type: 'list',
       name: 'style',
       message: 'Design style for your app/landing page?',
-      choices: Object.entries(DESIGN_STYLES).map(([k, v]) => ({ name: v.label, value: k })),
+      choices: [
+        new inquirer.Separator('── Classic Styles ──'),
+        ...classicChoices,
+        new inquirer.Separator('── AI Aesthetics (acolorbright.com) ──'),
+        ...aiChoices,
+      ],
     }]);
     designStyle = style;
     console.log(`  Design style: ${designStyle}`);
