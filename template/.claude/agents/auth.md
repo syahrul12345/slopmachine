@@ -14,17 +14,23 @@ You are setting up authentication via Supabase Auth with Apple + Google Sign-In.
 - Listens to `onAuthStateChange` for session updates
 - Handles token refresh automatically
 
+## Installation
+```bash
+# Use expo install for SDK-compatible versions — NEVER use npm install
+npx expo install expo-apple-authentication expo-auth-session expo-web-browser expo-crypto
+```
+
 ## Apple Sign-In Setup
 1. Enable in Apple Developer Console → App ID → Sign In with Apple
 2. Create Service ID for web (landing page) login if landing is active
 3. Configure Supabase → Auth → Providers → Apple
-4. `expo-apple-authentication` must be in dependencies
+4. Add to `app.json` plugins: `"expo-apple-authentication"`
 5. `app.json` → `ios.usesAppleSignIn: true`
 
 ## Google Sign-In Setup
 1. Create OAuth 2.0 credentials in Google Cloud Console (iOS + Web client IDs)
 2. Configure Supabase → Auth → Providers → Google
-3. `expo-auth-session` + `expo-web-browser` must be in dependencies
+3. Already installed above: `expo-auth-session` + `expo-web-browser`
 4. Set redirect URLs in both Google Console and Supabase
 
 ## Supabase Auth Config

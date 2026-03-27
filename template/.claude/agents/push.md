@@ -31,8 +31,14 @@ Add this to a migration: `supabase migration new push_tokens`
 - `handleNotificationResponse(response)` — tap handler (navigate to relevant screen)
 - `savePushToken(token, platform)` — upsert to `push_tokens` table
 
+## Installation
+```bash
+# Use expo install for SDK-compatible versions
+npx expo install expo-notifications expo-device expo-dev-client
+```
+
 ## Setup Steps
-1. Add `expo-notifications` to dependencies
+1. Install packages (see above)
 2. Configure `app.json`:
    ```json
    {

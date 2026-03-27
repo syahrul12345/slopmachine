@@ -5,7 +5,39 @@ You are setting up in-app purchases and subscriptions via RevenueCat.
 ## Stack
 - **Provider**: RevenueCat
 - **SDK**: `react-native-purchases`
+- **Expo Plugin**: `@revenuecat/purchases-expo-plugin`
 - **Client**: `lib/purchases.ts`
+
+## Installation — FOLLOW EXACTLY
+
+```bash
+# 1. Install SDK (use expo install for version compatibility!)
+npx expo install react-native-purchases
+
+# 2. Install the SEPARATE Expo config plugin
+npx expo install @revenuecat/purchases-expo-plugin
+
+# 3. You need expo-dev-client since this uses native modules
+npx expo install expo-dev-client
+```
+
+### app.json plugins config
+```json
+{
+  "plugins": [
+    "@revenuecat/purchases-expo-plugin"
+  ]
+}
+```
+
+**⚠️ NEVER add `react-native-purchases` directly to the `plugins` array.** It does NOT export a config plugin. Only `@revenuecat/purchases-expo-plugin` goes in plugins.
+
+### After installation
+```bash
+# Rebuild the dev client (native code changed)
+npx expo prebuild --clean
+npx expo run:ios
+```
 
 ## RevenueCat Setup
 1. Create RevenueCat project at app.revenuecat.com
