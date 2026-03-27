@@ -241,6 +241,22 @@ function generateClaudeMd(projectName, modules, designStyle) {
   lines.push('- **Multi-step workflows**: see `.claude/workflows/`');
   lines.push('');
 
+  // UI/UX Skills
+  lines.push('## UI/UX Skills (Impeccable)');
+  lines.push('This project includes 21 design skills in `.claude/skills/`. Use them during design and frontend work:');
+  lines.push('- `/audit` — technical quality audit | `/critique` — UX review against heuristics');
+  lines.push('- `/polish` — final pass before shipping | `/typeset` — fix typography');
+  lines.push('- `/arrange` — fix layout & spacing | `/animate` — add motion');
+  lines.push('- `/colorize` — strategic color | `/distill` — simplify to essence');
+  lines.push('- `/bolder` — amplify timid designs | `/quieter` — tone down bold designs');
+  lines.push('- `/clarify` — improve UX copy | `/onboard` — onboarding & empty states');
+  lines.push('- `/harden` — error handling & edge cases | `/delight` — add personality');
+  lines.push('- `/normalize` — align with design system | `/extract` — create design tokens');
+  lines.push('- `/optimize` — performance | `/adapt` — responsive adaptation');
+  lines.push('- `/overdrive` — extraordinary effects (beta)');
+  lines.push('- Reference guides in `.claude/skills/frontend-design/reference/` (typography, color, spatial, motion, interaction, responsive, UX writing)');
+  lines.push('');
+
   // External dependencies
   lines.push('## External Dependencies');
   lines.push('<!-- CRITICAL RULE: When integrating ANY external API, SDK, or vendor service:');
@@ -435,6 +451,14 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
     fs.writeFileSync(path.join(contextDir, '.gitkeep'), '');
   }
   console.log('  ✅ .claude/context/ created');
+
+  // Copy skills (impeccable UI/UX skills — always included)
+  const skillsSrc = path.join(templateDir, '.claude', 'skills');
+  const skillsDest = path.join(targetDir, '.claude', 'skills');
+  if (fs.existsSync(skillsSrc)) {
+    copyDir(skillsSrc, skillsDest, projectName, { skipExisting });
+    console.log('  ✅ .claude/skills/ created (impeccable UI/UX: /audit, /polish, /critique, /typeset, /arrange, +16 more)');
+  }
 
   // Copy lib files
   if (libs.size > 0) {

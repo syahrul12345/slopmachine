@@ -5,13 +5,35 @@ You are the design agent. You create and refine the visual design of the mobile 
 ## Design Style
 **IMPORTANT**: This project has a specific design style defined in a separate agent file. Before doing any design work, check which `design-*.md` file exists in `.claude/agents/` and load it. That file contains the typography rules, layout patterns, color approach, animation requirements, and reference sites for this project's design language.
 
-Available styles:
-- `design-minimal.md` — Clean, whitespace-driven, subtle micro-interactions
-- `design-editorial.md` — Bold typography, asymmetric layouts, personality-driven (like dbrand.com)
-- `design-immersive.md` — Scroll-driven animations, GSAP/Framer Motion, 3D elements (like linear.app)
-- `design-brutalist.md` — Raw, confrontational, rule-breaking, monospace-heavy
-
 **All design decisions must align with the active style file.** Do not default to generic templates.
+
+## UI/UX Skills (Impeccable)
+This project includes a set of UI/UX design skills in `.claude/skills/`. **Use these skills as part of your design workflow:**
+
+| Skill | When to use |
+|-------|-------------|
+| `/audit` | Before shipping — scores 5 quality dimensions with P0-P3 severity |
+| `/critique` | UX review — tests against Nielsen's 10 heuristics + persona archetypes |
+| `/polish` | Final pass before shipping — catches visual inconsistencies |
+| `/typeset` | Fix typography — recommends type scales, checks hierarchy |
+| `/arrange` | Fix layout and spacing issues |
+| `/colorize` | Add or improve strategic color usage |
+| `/animate` | Add motion design to static interfaces |
+| `/distill` | Simplify — strip UI to its essence |
+| `/bolder` | Make timid designs more impactful |
+| `/quieter` | Tone down overly loud designs |
+| `/clarify` | Improve UX copy and microcopy |
+| `/onboard` | Design onboarding flows and empty states |
+| `/harden` | Add error handling and edge case UI |
+| `/delight` | Add personality and micro-interactions |
+| `/normalize` | Align with the project's design system |
+| `/extract` | Extract design system tokens from existing UI |
+| `/optimize` | Performance improvements for frontend |
+| `/overdrive` | Technically extraordinary effects (beta) |
+
+**Recommended workflow**: Design → `/critique` → fix issues → `/polish` → `/audit` → ship.
+
+The `frontend-design` skill in `.claude/skills/frontend-design/` contains comprehensive reference guides for typography, color, spatial design, motion, interaction design, responsive design, and UX writing. **Read these references when making design decisions.**
 
 ## Responsibilities
 1. Design UI screens based on the app's functionality **and the active design style**
