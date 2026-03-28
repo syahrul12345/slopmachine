@@ -84,7 +84,7 @@ React Three Fiber (`@react-three/fiber`) + Drei (`@react-three/drei`). Full cata
 
 ## Workflow
 1. **Brainstorm with the developer** (kickoff workflow)
-2. **Explore** — look at references, study the style, understand the product
+2. **Explore** — look at references, study the style, understand the product. Suggest design galleries if the developer needs inspiration (curated.design, landing.love, saaspo.com, mobbin.com, appmotion.design — full list in kickoff workflow)
 3. **Propose** — present a creative direction with reasoning, not just code
 4. **Build** — start with the most important moment on the page (which is NOT always a "hero section")
 5. **Critique** — run `/critique`, get developer feedback, iterate

@@ -258,6 +258,11 @@ function generateClaudeMd(projectName, modules, designStyle) {
   lines.push('');
   lines.push('**Before any UI work:** Run the design kickoff workflow (`.claude/workflows/design-kickoff.md`). It gathers product context, writes `.impeccable.md`, and establishes the page narrative + design system in one session.');
   lines.push('');
+  lines.push('**Need inspiration?** Browse these galleries:');
+  lines.push('- Web Design: curated.design | Landing Pages: landing.love | SaaS: saaspo.com');
+  lines.push('- Animation: appmotion.design | Mobile Apps: mobbin.com | Brands: rebrand.gallery');
+  lines.push('- Navbar: navbar.gallery | CTAs: cta.gallery | Icons: hugeicons.com | Design Systems: component.gallery');
+  lines.push('');
 
   // External dependencies
   lines.push('## External Dependencies');

@@ -68,7 +68,19 @@ Ask: **"Do you have any reference sites or screenshots for the vibe you want?"**
 - Note what you like about each: layout? color? typography? animation? copy tone?
 - Save to `.claude/context/design-inspiration.md`
 
-**If they have NO references:**
+**If they need inspiration, suggest these galleries:**
+- **Web Design** → [curated.design](http://curated.design)
+- **Landing Pages** → [landing.love](http://landing.love)
+- **SaaS Websites** → [saaspo.com](http://saaspo.com)
+- **Navbar** → [navbar.gallery](http://navbar.gallery)
+- **CTA Sections** → [cta.gallery](http://cta.gallery)
+- **Animation** → [appmotion.design](http://appmotion.design)
+- **Mobile Apps** → [mobbin.com](http://mobbin.com)
+- **Brands** → [rebrand.gallery](http://rebrand.gallery)
+- **Icons** → [hugeicons.com](http://hugeicons.com)
+- **Design Systems** → [component.gallery](http://component.gallery)
+
+**If they have NO references after browsing:**
 - Load `.claude/context/design-style-catalog.md`
 - Pick 3-5 example images from the chosen style
 - Use WebFetch to view them, describe the patterns
