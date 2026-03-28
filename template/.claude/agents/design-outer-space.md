@@ -26,6 +26,24 @@ Deep space: void blacks, deep navies. Stars in white and blue-white. Nebula acce
 ## Layout
 Full-dark backgrounds throughout — scrolling feels like traveling through space. Expansive, full-viewport hero with cosmic backdrop. Content sections float in space — translucent cards or no containers at all. Generous spacing. Wide layouts using the full viewport for the cosmic canvas.
 
+## Structural Patterns (How Outer Space Pages Are Built)
+Space pages feel like piloting a ship through the cosmos. Scrolling IS traveling. Content is encountered at waypoints in the journey. The void between content is part of the experience.
+
+**Patterns that WORK for this style:**
+- **Space voyage** — scrolling moves you through space. Stars parallax at different layers. Content appears as "waypoints" — planets, stations, or beacons you arrive at. Between waypoints: just stars and void. The emptiness IS the design.
+- **Orbital system** — a central "sun" (the product) with content "planets" orbiting it. Scroll or click to visit each planet. Each planet is a feature or concept. The system diagram IS the navigation.
+- **Star map** — content points plotted like stars on a constellation map. Lines connect related content. Hover/click to visit each star. The page is a navigable map, not a scroll.
+- **Deep zoom** — start zoomed out seeing the whole universe. Scroll zooms in: galaxy → solar system → planet → surface → product. Each zoom level reveals more detail about the product.
+- **Mission log** — content formatted as mission entries or ship's log. Timestamps, coordinates, status updates. The product story told as an exploration mission. Scroll through the mission timeline.
+
+**BANNED for this style:**
+- Light or white backgrounds (breaks the illusion)
+- Card grids with visible card edges
+- Standard marketing sections on dark backgrounds (that's just "dark mode," not space)
+- Content without cosmic context (every element should feel like it belongs in space)
+- Dense text blocks (space needs SPACE)
+- Warm earthy colors dominating the palette
+
 ## Imagery
 Star fields (CSS or canvas), nebula gradients, cosmic dust. Planet/sphere renders with atmospheric glow. Orbital paths and trajectory lines. Constellation-style dot-and-line patterns. No earthbound imagery — stay cosmic.
 

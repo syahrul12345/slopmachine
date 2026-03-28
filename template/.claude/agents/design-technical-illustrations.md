@@ -26,6 +26,24 @@ Blueprint-inspired — deep navies, steel blues, cool whites. Accent colors that
 ## Layout
 Grid-visible — show the underlying structure, don't hide it. System diagrams as section layouts. Sidebars with specs/metadata alongside main content. Header bars with coordinates, version numbers, or status indicators.
 
+## Structural Patterns (How Technical Illustration Pages Are Built)
+Technical pages feel like reading a system manual or engineering document. The page IS a diagram. Content is labeled, annotated, and connected — not "designed" in the marketing sense.
+
+**Patterns that WORK for this style:**
+- **System diagram** — the entire page layout IS a system diagram. Content blocks are "nodes" connected by SVG lines. Navigation follows the flow of the system. The page teaches how the product works by BEING the diagram.
+- **Blueprint layout** — grid background visible everywhere. Content positioned on the grid with coordinate labels. Measurements and annotations in margins. The page feels like a technical drawing of the product.
+- **Technical manual** — numbered sections, specification tables, labeled figures with callouts. Sidebar with metadata (version, status, specs). Reads like documentation but IS the landing page.
+- **Dashboard / control panel** — the page looks like an instrument panel. Status indicators, gauges, data readouts. Content in "panels" with technical borders. Header shows system status.
+- **Exploded view** — one central product/concept, with labeled parts pointing outward. Like an exploded technical drawing. Each "part" links to deeper content.
+
+**BANNED for this style:**
+- Organic shapes or rounded blobs
+- Playful colors or decorative gradients
+- Hand-drawn or sketch elements
+- Marketing-speak copy (use direct, technical language)
+- Generic feature cards with icon + title + description
+- Hero sections with inspirational slogans
+
 ## Imagery
 SVG system diagrams with animated connections. Flow charts showing processes. Wireframe/blueprint-style product illustrations. Circuit-board or motherboard-inspired patterns. Patent-drawing style product views. No photography — everything diagrammatic.
 

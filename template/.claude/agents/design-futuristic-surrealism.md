@@ -26,6 +26,24 @@ Deep, rich backgrounds — midnight blues, deep purples, cosmic blacks. Ethereal
 ## Layout
 Full-viewport hero with immersive scene. Multi-layer parallax scrolling with depth layers. Content floats within the world — translucent card overlays. Scene transitions between sections (environment changes, not just scroll). Minimal UI chrome — let the world fill the screen.
 
+## Structural Patterns (How Futuristic Surrealism Pages Are Built)
+Surrealist pages are WORLDS, not pages. The user doesn't scroll through sections — they travel through environments. Each environment change IS the section transition.
+
+**Patterns that WORK for this style:**
+- **World travel** — each major content group is a different environment (underwater → sky → space → crystalline). Transitions between environments are animated (dive, fly, warp). Content exists WITHIN each world, not on top of it.
+- **Portal navigation** — portals (literal circular openings) connect different content areas. Click a portal to zoom through it into a new environment. Each environment contains related content. Non-linear navigation.
+- **Dream sequence** — the page is a continuous surreal journey. Physics change as you scroll (gravity shifts, scale warps, colors invert). Content appears as signs, floating text, or inscribed on surfaces within the world.
+- **Impossible architecture** — Escher-style layouts where content blocks exist on different planes. Stairs that lead to the ceiling. Windows that open into different scenes. The page structure itself is surreal.
+- **Time-lapse transformation** — a single environment evolves as you scroll. Day becomes night, ruins become cities, seeds become forests. Content appears at meaningful moments in the transformation.
+
+**BANNED for this style:**
+- Flat 2D layouts (everything needs depth)
+- White/light backgrounds (fill with environment)
+- Corporate imagery or stock photos
+- Standard section boundaries (no horizontal dividers or background color alternation)
+- Content that lives outside the world (no "normal" sections between surreal ones)
+- Performance-killing scenes without mobile fallback
+
 ## Imagery
 3D rendered impossible architectures. Floating islands, impossible staircases, portal imagery. Retrofuturistic machinery with glowing elements. Cosmic environments. Mixed media: 3D scenes with 2D UI overlaid. AI-generated concept art as backgrounds.
 

@@ -30,6 +30,23 @@ Flow fields, cellular automata, L-systems (fractals), Voronoi diagrams, Perlin/S
 ## Layout
 Full-viewport generative canvas as hero background. Content layered on generative visuals with semi-transparent backgrounds. Interactive canvases between text sections. Optional live parameter displays showing the system. Minimal chrome — let the generative art fill the space. Display a "seed" or version number to signal it's generated.
 
+## Structural Patterns (How Generative Art Pages Are Built)
+Generative pages ARE the art. The page is a canvas that also happens to contain product information. The generative system is always running, always visible. Content exists within the system, not on top of it.
+
+**Patterns that WORK for this style:**
+- **Living canvas** — one full-page canvas runs continuously. Content overlays as translucent panels that don't obscure the art entirely. Scrolling changes the generative parameters — the art evolves with the content. Each "section" is a different parameter set, not a different layout.
+- **Interactive exhibit** — each content section has its own interactive canvas. User can play with parameters (sliders, mouse position, click). The art demonstrates the product concept — flow fields for data processing, particle swarms for networking, etc.
+- **Seed-based** — the page generates uniquely for each visitor (random seed). Display the seed prominently. "Your version" of the page. Same content, different visual. A "regenerate" button creates a new version.
+- **Code + output** — split view: code/parameters on one side, generative output on the other. Show the rules that create the beauty. Scroll through different algorithms, each producing different patterns. The code IS the content.
+- **Emergence sequence** — start with a simple rule (one particle, one line). As you scroll, complexity increases. By the end, the simple rule has created an intricate system. The product story mirrors this: simple input → complex output.
+
+**BANNED for this style:**
+- Static generative imagery (it should move or respond to input)
+- Generic marketing layouts with a generative background
+- Using generative art only in the hero and then switching to normal layouts
+- Random-looking chaos (the beauty is in the RULES, not randomness)
+- Standard section patterns with canvas backgrounds
+
 ## Interactions
 Mouse position influences generative parameters. Click to regenerate (new seed, new pattern). Scroll-driven pattern evolution. Real-time parameter display. Touch/drag to paint or influence the field. Auto-evolving patterns when idle.
 

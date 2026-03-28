@@ -26,6 +26,24 @@ Often dark backgrounds for depth and to let objects glow — but light mode with
 ## Layout
 Cinematic backgrounds that let objects glow. Full-viewport hero with centered morphing object and minimal text. Feature sections: morphing object on one side, text on the other. Objects respond to scroll position. Generous space around objects — they need room to breathe and move.
 
+## Structural Patterns (How Morphing Object Pages Are Built)
+Morphing pages are about ONE thing: the object. The page is a stage for the object's performance. Content is secondary — it provides context for what you're watching.
+
+**Patterns that WORK for this style:**
+- **Object as narrator** — one morphing object persists through the entire scroll. As you scroll, it transforms to represent different concepts. Text appears alongside to explain what the object is becoming. The object IS the page navigation.
+- **Stage performance** — dark background, spotlight on the object. Content fades in/out around it. The object is always present, always moving. Sections are defined by the object's transformation state, not by layout changes.
+- **Metamorphosis sequence** — the page is a single continuous transformation. Scroll drives the morph from one form to another. 5-6 key states map to product features. Each state holds briefly, then transitions to the next.
+- **Ambient ecosystem** — multiple smaller morphing objects create an ecosystem. They interact, merge, split. Content floats among them. The page feels alive, like an aquarium or lava lamp that happens to contain product information.
+- **Interactive sculpture** — the morphing object responds to mouse/touch. The user can influence its form. Scroll reveals different content, but the object is always playable. Like a fidget toy that teaches you about the product.
+
+**BANNED for this style:**
+- Static layouts with no moving elements
+- Text-heavy sections without an accompanying visual
+- Generic card grids
+- Multiple competing visual elements per viewport (the object needs space)
+- Fast, jarring motion (fluid and calming only)
+- Standard marketing section patterns — the object defines the structure
+
 ## Imagery
 No static images — everything should have movement. 3D morphing shapes as hero elements. Particle systems that form and dissolve. Mesh gradients that shift colors over time.
 

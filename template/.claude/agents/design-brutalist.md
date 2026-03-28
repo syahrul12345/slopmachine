@@ -19,6 +19,27 @@ Monochrome base — or go the opposite with harsh, clashing colors. No pastels, 
 ## Layout
 Show the grid — visible borders, outlines, grid lines as design elements. Dense information packing OR deliberate sparseness (pick a stance). Asymmetric and overlapping elements. Single-column brutalism with full-width blocks and visible borders, or newspaper-style multi-column with visible column rules.
 
+## Structural Patterns (How Brutalist Pages Are Built)
+Brutalist pages reject the idea of "sections." The entire page is ONE thing — a document, a system, a manifesto. Structure should feel raw and functional, not decorated.
+
+**Patterns that WORK for this style:**
+- **Newspaper layout** — multi-column with visible column rules (CSS grid, border-right). Headlines span columns. Content density is high. No whitespace padding between "sections."
+- **Terminal / document** — the page reads like a plain-text document or terminal output. Monospace, left-aligned, no centering. Information is listed, not "designed." Navigation is a list of anchors at the top.
+- **Full-width blocks** — each content block is 100vw with 1px solid borders top and bottom. No padding, no max-width containers. Text runs edge to edge (with minimal inline padding).
+- **Overlapping / collage** — elements overlap intentionally. Absolute positioning, negative margins, z-index stacking. Text on top of text. Images bleeding out of containers.
+- **Index / catalog** — the page is a structured list (like a database view or Craigslist). Feature names in a `<dl>` or table, not in cards. Dense, scannable.
+- **Single statement** — the entire page is one giant headline + one link. Nothing else. Brutalist minimalism — say it and stop.
+
+**BANNED for this style:**
+- Rounded corners on anything
+- Gradient backgrounds
+- Card components with shadows
+- Centered hero with subtitle + CTA button combo
+- Smooth scroll animations or fade-ins
+- Icon grids or feature cards
+- Anything that looks "designed" — if it looks polished, it's wrong for this style
+- Testimonial sections with quote marks and avatars
+
 ## Imagery
 Raw, unprocessed — no filters, no color grading, no rounded corners. Screenshots over renders, diagrams over illustrations, ASCII art as decoration. Or no images at all — pure type and color.
 

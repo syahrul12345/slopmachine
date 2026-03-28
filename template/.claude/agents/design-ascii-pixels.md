@@ -26,6 +26,24 @@ Terminal classic: green on black, amber on dark. Or retro computing palettes: CG
 ## Layout
 Terminal/grid-based — content on fixed-width grid. No rounded corners — pixel-sharp edges only. ASCII box-drawing characters for borders and dividers. Command-line inspired navigation. Content blocks resembling terminal windows with title bars.
 
+## Structural Patterns (How ASCII & Pixel Pages Are Built)
+ASCII pages feel like a terminal session, a BBS, or a retro game. The page should NOT be a "normal page with pixel fonts" — the entire STRUCTURE should reference computing history.
+
+**Patterns that WORK for this style:**
+- **Terminal session** — the entire page is a terminal. Content appears as command output. Navigation is typing commands or clicking command links. Sections are separated by ASCII art dividers (═══════). New sections "load" with typing animations.
+- **BBS / forum** — structured like an old bulletin board system. ASCII art header, menu of numbered options, content in fixed-width blocks. Thread-style layout. Navigation via numbered selections at the bottom.
+- **Retro game UI** — the page is a game screen. Status bar at top, content area in middle, controls at bottom. Pixel art sprites illustrate concepts. Score/stats display product metrics. Interactions feel like game inputs.
+- **DOS file manager** — two-panel layout (like Norton Commander). One panel for navigation, one for content. ASCII borders, function key bar at bottom. Content switches when you select items in the navigation panel.
+- **ASCII art gallery** — large ASCII art pieces as section headers/heroes. Content arranged like a text file — left-aligned, monospaced, with manual line breaks. The beauty is in the text rendering, not the layout.
+
+**BANNED for this style:**
+- Smooth gradients (pixelate or dither them)
+- Rounded corners or soft shadows
+- Photography or realistic imagery
+- Serif or elegant typefaces
+- Responsive fluid layouts (use fixed-width grid)
+- Standard web marketing layouts with pixel fonts applied on top
+
 ## ASCII Art Elements
 Section headers, logo/wordmark, decorative borders and frames, progress bars, navigation markers (>, $, //).
 

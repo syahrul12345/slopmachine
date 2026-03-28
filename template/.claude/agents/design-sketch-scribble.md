@@ -26,6 +26,24 @@ Paper backgrounds — warm white, aged paper, notebook tones. Ink colors: pencil
 ## Layout
 Notebook/whiteboard feel — optional ruled lines, grid dots, or graph paper backgrounds. Annotations pointing to features (speech bubbles, arrows, circles). Elements slightly off-grid. Sketched dividers: wavy lines, dashes, doodle borders. Mix of sticky notes, paper scraps, and notebook pages as metaphors.
 
+## Structural Patterns (How Sketch & Scribble Pages Are Built)
+Sketch pages feel like looking at someone's notebook or whiteboard. The structure should look UNSTRUCTURED — like ideas jotted down, connected with arrows, annotated in margins. Not a "page" — a thinking space.
+
+**Patterns that WORK for this style:**
+- **Notebook page** — the entire page is one notebook page. Ruled lines in the background. Content is "written" on the lines. Margin notes, circled words, arrows pointing between ideas. Sections are separated by hand-drawn horizontal lines or doodles.
+- **Whiteboard** — dot-grid or blank background. Content blocks are "sticky notes" or "index cards" scattered (not gridded). Hand-drawn arrows connect related ideas. Some notes are "crossed out" or have annotations.
+- **Mind map** — the page IS a mind map. Central idea in the middle, branches radiating out. Scroll reveals branches. Each branch is a content section. SVG lines connect everything.
+- **Sketchbook flip** — each major section is a "page" that flips (CSS 3D transform). Different paper textures per page. Some pages are sketches, some are notes, some are diagrams.
+- **Annotated diagram** — the product screenshot or concept is the center. Hand-drawn arrows, circles, and labels annotate it from all sides. The "sections" are the annotations, not separate blocks.
+
+**BANNED for this style:**
+- Clean card grids with rounded corners and shadows
+- Polished gradients or glass effects
+- Perfect geometric shapes
+- Pixel-perfect alignment (slight messiness is the point)
+- Stock photography
+- Standard marketing section patterns (hero, features, testimonials)
+
 ## Imagery
 Hand-drawn illustrations and diagrams. SVG doodles: arrows, stars, underlines, circles. Whiteboard-style system diagrams. Screenshots "taped" onto paper backgrounds. No photography — everything illustrated or diagrammatic.
 

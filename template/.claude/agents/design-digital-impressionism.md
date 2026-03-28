@@ -26,6 +26,25 @@ Soft, desaturated pastels — lavender, rose mist, sky blue. Barely-perceptible 
 ## Layout
 Generous whitespace — more than most styles. Content floats rather than being contained. Overlapping soft blobs/shapes as backgrounds. Asymmetric but balanced — elements drift rather than snap to grid.
 
+## Structural Patterns (How Digital Impressionism Pages Are Built)
+Impressionist pages feel like drifting through a dream. Nothing has hard edges. Content emerges from blur, floats in space, and dissolves back. There are no "sections" — there are zones of focus and zones of atmosphere.
+
+**Patterns that WORK for this style:**
+- **Fog and focus** — content starts blurred and sharpens into focus as you scroll to it, then blurs again as you pass. Only the current viewport is "in focus." Everything else is soft atmosphere.
+- **Floating islands** — content blocks float on a soft background without containers. No borders, no cards, no boxes. Just text and images drifting in blurred space with soft colored shadows.
+- **Emergence** — the page starts nearly empty (soft blobs, gentle color). Content materializes slowly as you scroll — text fades in word by word, images resolve from blur. The whole page "develops" like a photograph.
+- **Soft layers** — overlapping translucent panels at different blur levels. Background: heavily blurred shapes. Middle: semi-blurred ambient elements. Foreground: clear content. Creates depth without 3D.
+- **Single narrative flow** — no section breaks. One continuous scroll where the color palette slowly shifts (cool to warm, light to dark). Content appears in the flow like thoughts in a stream of consciousness.
+
+**BANNED for this style:**
+- Hard borders, outlines, or card edges
+- Grid layouts with rigid structure
+- Sharp typographic hierarchy (no bold/heavy fonts)
+- High-contrast color pairings
+- Fast animations or snappy transitions
+- Feature comparison grids or pricing tables
+- Any section with a defined rectangular boundary
+
 ## Imagery
 Soft blurs, out-of-focus photography, light leaks. Diffused gradients, watercolor-style textures. Animated floating particles or bokeh effects (subtle, slow). Never sharp product shots — everything filtered.
 

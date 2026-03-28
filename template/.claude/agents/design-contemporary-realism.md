@@ -22,6 +22,24 @@ Photorealistic 3D renders with intentional materials (glass, metal, plastic, fab
 ## Layout
 Clean grid system with precise alignment. Large product renders/photos as focal points. Dark/light section contrast for dramatic effect. Feature sections pair product images with descriptive text. Controlled, intentional whitespace.
 
+## Structural Patterns (How Contemporary Realism Pages Are Built)
+Realist pages feel like a product showroom or gallery exhibition. The renders/photos ARE the page. Text is minimal — just enough to contextualize what you're seeing. Every section exists to showcase something tangible.
+
+**Patterns that WORK for this style:**
+- **Gallery walk** — large product renders/photos in sequence, each taking up most of the viewport. Minimal text alongside. The user "walks through" the product like visiting a gallery. Pacing is slow, each image gets its moment.
+- **Product theater** — dark background, single product render centered and dramatically lit. Scroll reveals different angles, details, or configurations. Like an Apple product page, but with YOUR product's story.
+- **Material study** — close-up detail shots interspersed with wider context shots. Show the texture, the precision, the quality. Each section zooms into a different aspect of the product. Text explains what you're seeing.
+- **Before/after** — split-screen or slider showing transformation. Old way vs new way. Problem state vs solved state. The realism style makes this visceral — real renders, not abstract diagrams.
+- **Spec sheet** — the product image at top, then dense technical specifications below. No marketing fluff — just what it is, what it does, how it performs. Tables, data, precision.
+
+**BANNED for this style:**
+- Cartoon illustrations or flat icons (demands realism)
+- Abstract blobs or decorative shapes
+- Playful color palettes or loose layouts
+- Low-quality renders (quality IS the point)
+- Generic feature card grids with icon + title + description
+- Text-heavy sections without product imagery
+
 ## Interactions
 Smooth, measured transitions. Hover on products with subtle rotation or lighting change. 3D product viewers (Three.js/Spline) for interactive exploration. Slight scale animations on scroll entrance. Everything precise, nothing playful.
 

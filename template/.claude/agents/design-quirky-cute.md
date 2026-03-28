@@ -22,6 +22,24 @@ Simple, geometric mascot — round shapes, big eyes, personality and expressions
 ## Layout
 Rounded containers and card-based layouts. Generous padding and soft spacing. Scattered decorative elements: stars, sparkles, dots, squiggles. Feature sections with mascot illustrations. Sticker-like badges and labels.
 
+## Structural Patterns (How Quirky Cute Pages Are Built)
+Cute pages feel like an interactive storybook or a game UI. The mascot is the guide. The page is a journey WITH the character, not a list of features explained BY the character.
+
+**Patterns that WORK for this style:**
+- **Mascot-guided tour** — the mascot walks/floats alongside the scroll, reacting to each section. It points at features, gets excited about capabilities, looks worried at the problem section. The mascot IS the narrative thread.
+- **Storybook** — the page tells a story in illustrated panels. "Once upon a time, [user] had [problem]..." Each panel has a custom illustration. The page reads like a children's book explaining the product.
+- **Playground** — interactive elements everywhere. Draggable stickers, clickable eggs, hover animations on everything. The page is a toy to play with that happens to explain a product.
+- **Character collection** — different mascot variations represent different features. A "meet the team" of characters, each with personality and abilities. Not a feature grid — a character roster.
+- **Pop-up book** — sections "pop up" as you scroll, with layered elements creating depth. Paper-fold animations. Each section reveals itself dramatically, like turning a page.
+
+**BANNED for this style:**
+- Corporate layouts with stock photography
+- Dark, moody palettes
+- Sharp corners or angular shapes
+- Generic stock icons instead of custom illustrations
+- Serious/corporate copy tone
+- Standard hero → features → testimonials → pricing flow (tell a STORY instead)
+
 ## Imagery
 Custom character illustrations for every major concept. Sticker packs / emoji-style icon sets. Animated mascot reactions. Decorative doodles: sparkles, arrows, hearts, stars. No stock photography — everything custom illustrated.
 

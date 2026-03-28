@@ -38,7 +38,7 @@ Before writing ANY code, ask yourself these questions. If you can't answer them,
 
 ## Design Style + Impeccable Skills
 
-**Style file** (`design-*.md`): Provides the aesthetic mood, creative direction, and reference sites. Treat as inspiration, not specs. Derive YOUR values from YOUR product's personality.
+**Style file** (`design-*.md`): Provides aesthetic mood, creative direction, **structural patterns** (how to build the page), and a **banned list** (layouts you must NOT use). The structural patterns are NOT optional — they define the page architecture, not just the visuals. Read them BEFORE proposing any layout.
 
 **Impeccable skills** (`.claude/skills/`): Provide quality principles — how to execute well regardless of style. Reference guides in `.claude/skills/frontend-design/reference/` cover typography, color, spatial design, motion, interaction, responsive, and UX writing.
 
@@ -47,6 +47,14 @@ Before writing ANY code, ask yourself these questions. If you can't answer them,
 All 18 available styles with example screenshots are in `.claude/context/design-style-catalog.md`. If the developer is stuck, offer to analyze reference sites and suggest a direction.
 
 ## Self-Check: Does This Look Generic?
+
+**THE #1 FAILURE MODE**: building hero → features grid → testimonials → CTA regardless of style. This is called "zebra striping" — alternating section patterns that look identical on every site, just with different colors. **If your page follows this pattern, you have failed.**
+
+Before writing ANY section code, read the **Structural Patterns** section in your active design style file (`design-*.md`). Each style has SPECIFIC structural patterns that define HOW the page is built — not just how it looks. It also has a **BANNED** list of layouts you must NOT use.
+
+**Structure test**: Remove all colors, fonts, and images from your design. Does the page SHAPE look different from a generic SaaS landing page? If the wireframe could belong to any product, the structure is wrong — go back and read the structural patterns for your style.
+
+**Style test**: If you applied a completely different color palette to your page, would it still feel like your chosen style? If yes, the style is only skin-deep — you need to change the STRUCTURE, not just the paint.
 
 Before committing to a design direction, run `/critique` — it has built-in AI slop detection and persona-based testing that catches the patterns you're blind to.
 

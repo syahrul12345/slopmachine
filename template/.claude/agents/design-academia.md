@@ -19,6 +19,25 @@ Paper white with near-black text. Very light borders. Understated link color —
 ## Layout
 Single column, content-focused. No hero section — start with title and intro like a paper. Dense but readable — more content per viewport than typical marketing sites. Sections divided by horizontal rules or extra whitespace (no decorative dividers). Minimal navigation, no mega-menus. Footer with just links.
 
+## Structural Patterns (How Academia Pages Are Built)
+Academic pages read like research papers or technical documentation. The structure is text-driven, not visual-driven. No "design" in the marketing sense — just well-organized information.
+
+**Patterns that WORK for this style:**
+- **Paper format** — title, authors/team, abstract (one-paragraph summary), then sections with numbered headings. Footnotes at the bottom. Citations for claims. Table of contents as navigation. This IS the landing page.
+- **Documentation** — sidebar table of contents (sticky), main content area. Dense text with inline code, figures with captions, and tables. Like reading API docs or a technical spec — but for a product.
+- **Blog / essay** — long-form single-column text. No hero, no images above the fold. Start with the argument. Use pull quotes and horizontal rules for pacing. The strength of the writing IS the marketing.
+- **Data-driven** — lead with numbers, charts, and evidence. SVG data visualizations inline with text. Tables comparing approaches. Footnoted claims. The product sells itself through proof, not polish.
+- **Index page** — a simple list of links to deeper content. Like a university department homepage. Title, one-line description, and links to: the product, the research, the team, the blog. Nothing else.
+
+**BANNED for this style:**
+- Hero images or gradient backgrounds
+- Card grids with icons
+- Scroll animations or parallax effects
+- Mascots, illustrations, or decorative imagery
+- Above-the-fold urgency tactics (countdown timers, "limited time")
+- Testimonial carousels
+- Any marketing pattern that wouldn't look right in a research paper
+
 ## Visual Elements
 Clean, minimal tables. Simple SVG charts or data visualizations — functional, not decorative. Labeled figures with captions. Code blocks with subtle backgrounds. No icons, illustrations, or decorative imagery.
 

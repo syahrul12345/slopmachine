@@ -112,11 +112,15 @@ Work with the developer to answer:
 
 ### 3b: Map Narrative to Sections
 
-Based on the arc, propose a section flow. **Every section must answer: "Why does this section exist? What does the user feel after reading it?"**
+**FIRST: Read the Structural Patterns section in your active design style file** (`design-*.md`). Each style defines specific page structures that WORK for that style, and a BANNED list of patterns you must NOT use. Your section plan must use one of the structural patterns from your style file — or a creative combination of them.
 
-The section flow should be UNIQUE to this product. Don't start from a template — start from the narrative arc above and ask: what's the most compelling order to tell THIS story?
+Based on the narrative arc AND your style's structural patterns, propose a section flow. **Every section must answer: "Why does this section exist? What does the user feel after reading it?"**
 
-**If your proposed flow looks like every other landing page** (hero → features → testimonials → CTA), push yourself harder. What would make someone remember THIS page?
+The section flow should be UNIQUE to this product. Don't start from a template — start from the narrative arc above, constrained by the structural patterns of your chosen style.
+
+**Zebra stripe test**: If your proposed flow is hero → features grid → testimonials → CTA, STOP. This is the generic SaaS pattern that every AI generates by default. Go back to your style's structural patterns and pick a DIFFERENT approach. Each style has 4-5 alternative structural patterns — use one.
+
+**Wireframe test**: Sketch the layout as boxes on paper. If ALL boxes are the same width, centered, and stacked vertically — that's zebra striping. Your boxes should vary in: width, alignment, height, position, and relationship to each other.
 
 ### 3c: Section Transitions
 
@@ -204,6 +208,9 @@ Before writing any code:
 - [ ] Colors pass WCAG AA contrast (4.5:1 text on background)
 - [ ] Typography scale is consistent
 - [ ] Page flow tells a story, not just lists features
+- [ ] Page architecture uses a structural pattern from the active design style file
+- [ ] Page architecture does NOT match any BANNED patterns from the style file
+- [ ] Wireframe test: sections vary in width, alignment, height, and layout — not all centered stacked boxes
 
 Run `/typeset` and `/colorize` skills to validate tokens.
 
