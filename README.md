@@ -133,18 +133,29 @@ Once slopmachine finishes, the calling agent should:
 3. Run the design-kickoff workflow (`.claude/workflows/design-kickoff.md`) before any UI work — this is an interactive session with the developer that establishes product context, brand personality, page narrative, and design system
 4. Start building — load the relevant agent files based on the task (e.g., `.claude/agents/mobile.md` for app development)
 
+### Discovery
+
+Run `--list` to get all available modules, styles, and dependency chains as JSON:
+
+```bash
+npx github:syahrul12345/slopmachine --list
+```
+
+This outputs structured JSON with `modules`, `styles`, and `dependencies` — parse it to know what's available before making your scaffold call.
+
 ### Agent integration example
 
 If you're building an orchestrator agent that scaffolds projects, here's the flow:
 
 ```
-1. Ask the user what they want to build (product type, features, design vibe)
-2. Map their answers to slopmachine modules and style
-3. Run: npx github:syahrul12345/slopmachine <name> --modules <list> --style <style>
-4. cd into the project
-5. Read CLAUDE.md to understand the project structure
-6. Run the design-kickoff workflow interactively with the user
-7. Begin implementation using the relevant agent files
+1. Run: npx slopmachine --list → parse JSON to discover available modules and styles
+2. Ask the user what they want to build (product type, features, design vibe)
+3. Map their answers to slopmachine modules and style
+4. Run: npx slopmachine <name> --modules <list> --style <style>
+5. cd into the project
+6. Read CLAUDE.md to understand the project structure
+7. Run the design-kickoff workflow interactively with the user
+8. Begin implementation using the relevant agent files
 ```
 
 ## Requirements

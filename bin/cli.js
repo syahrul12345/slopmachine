@@ -588,6 +588,21 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
 // --- Commands ---
 
 async function main() {
+  // --list: output machine-readable JSON of all available modules and styles
+  if (args.includes('--list')) {
+    const output = {
+      modules: Object.fromEntries(
+        Object.entries(MODULES).map(([k, v]) => [k, { label: v.label, group: v.group }])
+      ),
+      styles: Object.fromEntries(
+        Object.entries(DESIGN_STYLES).map(([k, v]) => [k, { label: v.label, group: v.group }])
+      ),
+      dependencies: DEPENDENCIES,
+    };
+    console.log(JSON.stringify(output, null, 2));
+    return;
+  }
+
   if (command === 'init') {
     await runInit();
   } else if (command && command !== '--help' && command !== '-h') {
@@ -603,14 +618,17 @@ Usage:
   slopmachine <project-name>                          Interactive mode (prompts for modules + style)
   slopmachine <project-name> --modules m1,m2 --style  Non-interactive mode (for CI or agent use)
   slopmachine init                                    Add configs to existing project
+  slopmachine --list                                  Output available modules and styles as JSON
 
 Options:
   --modules <list>   Comma-separated modules: ${Object.keys(MODULES).join(', ')}
   --style <name>     Design style: ${Object.keys(DESIGN_STYLES).join(', ')}
+  --list             Print all modules, styles, and dependencies as JSON (for agent discovery)
 
 Examples:
   slopmachine my-app
   slopmachine my-app --modules mobile,landing,auth,payments --style minimal
+  slopmachine --list
   cd existing-app && slopmachine init
   cd existing-app && slopmachine init --modules landing,auth --style editorial
 `);
