@@ -3,49 +3,34 @@
 You are designing in the **Shades of Off-White** style. The quiet-luxury uniform of AI. Calm, warm, muted palettes designed to reduce friction and avoid visual risk. Premium without glossiness.
 
 ## Core Principles
-- **Warmth through neutrals** — cream, bone, warm gray, sand — never pure white (#FFF)
+- **Warmth through neutrals** — cream, bone, warm gray, sand — never clinical white
 - **Reduce visual friction** — no jarring elements, everything feels considered and calm
 - **Let content dominate** — the background supports, never competes
 - **Premium restraint** — quality signaled through spacing and materials, not decoration
 
-## Typography Rules
-- Clean geometric sans-serif: Inter, Geist, Satoshi, or Plus Jakarta Sans
-- Hero headline: 48-64px, medium to semibold weight (NOT ultra-bold — too aggressive for this style)
-- Body: 16-18px, regular weight, generous line-height (1.7+)
-- Muted text colors — dark warm gray (#2D2D2D) not pure black
-- Subtle letter-spacing on labels: +0.05em uppercase
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- Backgrounds: off-white (#F8F6F3), warm cream (#FAF9F6), light linen (#FEFCF8)
-- Text: warm charcoal (#2D2A26), medium gray (#6B6560)
-- Accent: single muted tone — dusty rose, sage green, warm amber — never saturated
-- Borders/dividers: barely visible (#E8E4DF)
-- **No pure black. No pure white. Everything warm.**
+## Typography
+Clean geometric sans-serif with medium weight — not ultra-bold, which feels too aggressive for this style. Comfortable body text with generous line-height. Muted text colors in warm dark tones rather than pure black. Subtle letter-spacing on labels.
+
+## Color Mood
+Off-whites, warm creams, light linen tones. Text in warm charcoal with medium grays for secondary. One muted accent — dusty rose, sage green, warm amber — never saturated. Barely-visible borders. Everything warm.
 
 ## Layout
-- Generous whitespace — 140-200px between major sections
-- Max content width: 1080px (narrower than typical — intimacy over breadth)
-- Centered, single-column flow with occasional 2-column at wider breakpoints
-- Cards with very subtle shadows (2px blur, 0.03 opacity) or no shadow at all
+Generous whitespace. Narrower max content width than typical — intimacy over breadth. Single-column flow with occasional two-column at wider breakpoints. Cards with very subtle or no shadows.
 
 ## Imagery
-- Soft, desaturated photography — warm tones, natural light
-- Abstract textures: paper grain, fabric weave, subtle noise overlays
-- Product shots with neutral backgrounds
-- No high-contrast or vibrant imagery
+Soft, desaturated photography with warm tones and natural light. Abstract textures: paper grain, fabric weave, subtle noise overlays. No high-contrast or vibrant imagery.
 
 ## Interactions
-- Hover: very subtle opacity shifts (0.7 → 1.0), gentle scale (1.01)
-- Transitions: 300-400ms ease, nothing snappy
-- Scroll animations: slow fade-in (600ms+), gentle translateY (10px max)
-- Everything should feel unhurried
+Very subtle — opacity shifts, gentle scale on hover. Slow transitions, nothing snappy. Slow fade-in on scroll. Everything should feel unhurried.
 
-## What NOT to Do
-- No vibrant gradients or saturated colors
-- No heavy shadows or hard borders
-- No aggressive animations or fast transitions
-- No dark mode (this style IS the light mode)
-- No busy patterns or textures that compete with content
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Adding vibrant gradients or saturated colors
+- Using heavy shadows or hard borders
+- Making aggressive or fast animations
+- Adding busy patterns that compete with content
 
 ## Reference Sites
 - [Anthropic](https://www.anthropic.com/economic-futures)

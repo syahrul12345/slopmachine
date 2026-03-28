@@ -8,84 +8,36 @@ You are designing in the **Sketch & Scribble** style. Uneven lines, quick marks,
 - **Process over polish** — show the journey, not just the destination
 - **Human > Machine** — every element should feel made by a person, not generated
 
-## Typography Rules
-- Mix handwritten/sketch fonts with clean body text:
-  - Headlines: Caveat, Architects Daughter, Patrick Hand, or similar hand-drawn font
-  - Body: clean sans-serif (Inter, DM Sans) for readability
-- Hero: 48-72px in handwritten font
-- Body: 16-18px in clean font
-- Annotations and labels in handwritten style
-- Allow slight rotation on text elements (1-2deg) for sketch feel
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- **Paper backgrounds**: warm white (#FAF8F5), aged paper (#F5F0E8), notebook blue-line (#E8EFF5)
-- **Ink colors**: pencil gray (#4A4A4A), pen blue (#2B5EA7), marker red (#C54B4B)
-- **Highlights**: marker yellow (#FFF3B0) at 60% opacity, pink (#FFD6E0) at 50%
-- Accent: single bold color for CTAs — keeping the rest sketch-like
-- No gradients — flat colors or cross-hatching for fills
+## Typography
+Mix handwritten/sketch fonts for headlines (Caveat, Architects Daughter, Patrick Hand) with clean sans-serif for body readability. Annotations and labels in handwritten style. Allow slight rotation on text elements for sketch feel.
 
-## Visual Techniques
-```css
-/* Sketch-style borders */
-.sketch-box {
-  border: 2px solid #4A4A4A;
-  border-radius: 2px;
-  /* Use slightly irregular SVG border for authentic feel */
-  background-image: url('/sketch-border.svg');
-}
+## Color Mood
+Paper backgrounds — warm white, aged paper, notebook tones. Ink colors: pencil gray, pen blue, marker red. Marker highlights at reduced opacity. One bold accent color for CTAs, keeping everything else sketch-like. No gradients — flat colors or cross-hatching for fills.
 
-/* Marker highlight effect */
-.highlight {
-  background: linear-gradient(
-    180deg,
-    transparent 50%,
-    rgba(255, 243, 176, 0.6) 50%
-  );
-  display: inline;
-}
-
-/* Wobble animation */
-@keyframes wobble {
-  0%, 100% { transform: rotate(-0.5deg); }
-  50% { transform: rotate(0.5deg); }
-}
-
-/* Paper texture background */
-.paper {
-  background-color: #FAF8F5;
-  background-image: url('/paper-texture.png');
-}
-```
+## Techniques
+- Slightly irregular SVG borders for authentic hand-drawn feel
+- Marker highlight effect (bottom-half background on inline text)
+- Subtle wobble/rotation on elements
+- Paper texture backgrounds
+- Hand-drawn arrows connecting sections
 
 ## Layout
-- **Notebook/whiteboard feel** — optional ruled lines, grid dots, or graph paper background
-- Hand-drawn arrows connecting sections
-- Elements positioned slightly off-grid (1-3px random offsets)
-- Annotations pointing to key features (speech bubbles, arrows, circles)
-- Sketched dividers: wavy lines, dashes, or doodle borders
-- Mix of sticky notes, paper scraps, and notebook pages as UI metaphors
+Notebook/whiteboard feel — optional ruled lines, grid dots, or graph paper backgrounds. Annotations pointing to features (speech bubbles, arrows, circles). Elements slightly off-grid. Sketched dividers: wavy lines, dashes, doodle borders. Mix of sticky notes, paper scraps, and notebook pages as metaphors.
 
 ## Imagery
-- Hand-drawn illustrations and diagrams
-- SVG doodles: arrows, stars, underlines, circles, checkmarks
-- Whiteboard-style system diagrams
-- Screenshots "taped" onto paper backgrounds (with tape/pin decorations)
-- No photography — everything illustrated or diagrammatic
+Hand-drawn illustrations and diagrams. SVG doodles: arrows, stars, underlines, circles. Whiteboard-style system diagrams. Screenshots "taped" onto paper backgrounds. No photography — everything illustrated or diagrammatic.
 
 ## Interactions
-- Draw-on effects: SVG path animation (stroke-dashoffset) for lines appearing
-- Hover: elements get a hand-drawn circle or underline
-- Click: sketch "check" animation
-- Page transition: paper flip or notebook page turn
-- Scroll: elements "drawn in" progressively (SVG line animation)
+SVG line-draw animations (stroke-dashoffset) for lines appearing. Hover adds hand-drawn circles or underlines. Elements "drawn in" progressively on scroll. Paper flip or notebook page turn transitions.
 
-## What NOT to Do
-- No polished gradients or glass effects
-- No perfect geometric shapes
-- No stock photography
-- No heavy 3D renders
-- No pixel-perfect alignment (slight messiness is the point)
-- No corporate formality
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Adding polished gradients or glass effects (breaks the hand-drawn feel)
+- Using perfect geometric shapes (this style needs imperfection)
+- Including stock photography or heavy 3D renders
+- Making pixel-perfect aligned layouts (slight messiness is the point)
 
 ## Reference Sites
 - [Anthropic](https://www.anthropic.com/)

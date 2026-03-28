@@ -8,44 +8,26 @@ You are designing in the **Minimal / Clean** style. This is intentionally simple
 - **Subtle, not boring** — micro-interactions on hover, smooth transitions, refined shadows
 - **Typography carries the weight** — rely on font pairing and hierarchy, not decoration
 
-## Typography Rules
-- Use a modern geometric sans-serif (Inter, Geist, Satoshi, or similar)
-- Hero headline: 48-72px, bold/black weight
-- Body: 16-18px, regular weight, generous line-height (1.6+)
-- Max 2 font families — one for headlines, one for body (or one family with weight contrast)
-- Letter-spacing: slight negative on large headlines, slight positive on small caps/labels
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
+
+## Typography
+The type system does the heavy lifting. Think modern geometric sans-serifs (Inter, Geist, Satoshi and similar). Bold, confident headlines with comfortable, readable body text and generous line-height. Max two font families — or one family with strong weight contrast. Slight negative letter-spacing on large headlines, slight positive on small caps/labels.
+
+## Color Mood
+Light, airy, restrained. Background should feel open — not clinical white but something with warmth or coolness depending on your product. Near-black headlines, softer grays for body. One accent color for buttons and links — that's it. Gradients only if extremely subtle.
 
 ## Layout
-- Max content width: 1200px centered
-- Sections: generous vertical padding (120-160px between major sections)
-- Grid: 12-column, content centered in 8-10 columns
-- Hero: centered text, single CTA, optional product image below
-- No sidebar clutter — single column flow
+Single-column flow, generous vertical space between sections. No sidebar clutter. The page should feel like it's breathing. Let the content speak.
 
-## Color
-- Background: white or very light neutral (#FAFAFA)
-- Text: near-black (#111) for headlines, dark gray (#555) for body
-- One accent color for buttons and links
-- No gradients unless extremely subtle
+## Interactions
+Even minimal sites need life — subtle scale on button hover, fade-in on scroll, smooth anchor scrolling, underline animations on links. CSS transitions + IntersectionObserver are sufficient — no heavy animation libraries needed.
 
-## What NOT to Do
-- No generic stock photography
-- No card grids with lorem ipsum
-- No rainbow of colors
-- No default shadows or borders — if you use them, make them intentional (e.g., `shadow-sm` with custom color)
-- No centered text blocks wider than 600px
-
-## Micro-interactions (Required)
-Even minimal sites need life:
-- Button hover: subtle scale (1.02) + shadow shift
-- Section fade-in on scroll (CSS `animation` with `IntersectionObserver`, no heavy libs needed)
-- Smooth anchor scrolling
-- Link hover: underline animation (width transition)
-
-## CSS Approach
-- Tailwind CSS or vanilla CSS with custom properties
-- No animation libraries needed — CSS transitions + `IntersectionObserver` are sufficient
-- Use `@media (prefers-reduced-motion)` for accessibility
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Using generic stock photography instead of something product-specific
+- Building card grids with placeholder content
+- Adding colors or decorative elements to fill space
+- Using default shadows and borders without intention
 
 ## Reference Sites
 - Linktree, Notion marketing site, Bear app, iA Writer

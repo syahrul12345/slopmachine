@@ -4,32 +4,32 @@
 
 ---
 
-## Step 0: Run /teach-impeccable (if not done yet)
+## Step 0: Establish Design Context
 
-**If `.impeccable.md` does not exist in the project root**, run the `/teach-impeccable` skill first. It interactively gathers design context from the codebase and the developer — users, brand personality, aesthetic direction, accessibility requirements — and saves it to `.impeccable.md`. This feeds into all impeccable design skills (`/audit`, `/critique`, `/polish`, etc.) for the rest of the project.
+**If `.impeccable.md` does not exist in the project root**, run the `/teach-impeccable` skill first. It interactively gathers design context — users, brand personality, aesthetic direction, accessibility requirements — and saves it to `.impeccable.md`. This feeds into all impeccable design skills (`/audit`, `/critique`, `/polish`, etc.) for the rest of the project. Only needs to run once.
 
-This only needs to run once per project.
+**If `.impeccable.md` already exists**, read it now. It contains the brand personality, user context, and aesthetic direction that should inform every step below.
 
 ---
 
 ## Step 1: Understand the Product
 
-Before touching anything visual, you need to understand what you're designing for. Ask the developer:
+**Read `.impeccable.md` first** — it may already answer some of these. Only ask the developer questions that aren't already covered:
 
 1. **"What does this product do in one sentence?"**
-2. **"Who is this for? Describe your ideal user."**
+2. **"Who is this for?"** (may already be in `.impeccable.md` → skip if so)
 3. **"What's the ONE thing you want someone to do when they visit?"** (sign up, download, buy, learn more)
 4. **"What makes this different from alternatives?"**
-5. **"What's the emotional tone?"** (trustworthy, playful, premium, rebellious, calm, energetic)
+5. **"What's the emotional tone?"** (may already be in `.impeccable.md` → skip if so)
 
 Save the answers to `.claude/context/product-brief.md`. This file drives every design decision.
 
 **If the developer doesn't have clear answers**, help them brainstorm:
-- Look at the codebase — what does the app actually do?
+- Look at the codebase ��� what does the app actually do?
 - Who would use this? Paint a picture of the user.
 - What problem does it solve? What's the before/after?
 
-**DO NOT PROCEED without a product brief.** Designing without knowing what you're designing is how you end up with generic hero + features + CTA.
+**DO NOT PROCEED without a product brief.** Designing without knowing what you're designing is how you end up with generic output.
 
 ---
 
@@ -76,45 +76,18 @@ Work with the developer to answer:
 
 Based on the arc, propose a section flow. **Every section must answer: "Why does this section exist? What does the user feel after reading it?"**
 
-Example for a developer tool:
-```
-1. Interactive demo (hook — show the product working, not a headline)
-2. "The problem" — pain point with relatable scenario
-3. How it works — 3 steps, show the actual UI
-4. Speed comparison — before/after metrics
-5. Integration logos — "works with your stack"
-6. Pricing — clear, no tricks
-7. CTA — single action
-```
+The section flow should be UNIQUE to this product. Don't start from a template — start from the narrative arc above and ask: what's the most compelling order to tell THIS story?
 
-Example for a consumer app:
-```
-1. Bold statement + app preview (hook)
-2. Feature showcase — the top 3 things, each with a phone mockup
-3. Social proof — real user quotes, app store rating
-4. "How it works" — 3 simple steps
-5. Download CTA with app store badges
-```
-
-**Anti-patterns to REJECT:**
-- ❌ Generic "Welcome to [Product]" hero
-- ❌ Three icon cards with vague feature titles
-- ❌ Alternating left-right sections with stock imagery
-- ❌ Dark section → light section → dark section banding
-- ❌ "Trusted by" logo bar as the second section (lazy social proof)
-- ❌ FAQ accordion at the bottom (sign of unexplained product)
-- ❌ Every section centered with the same max-width
-- ❌ Footer with 40 links nobody clicks
+**If your proposed flow looks like every other landing page** (hero → features → testimonials → CTA), push yourself harder. What would make someone remember THIS page?
 
 ### 3c: Section Transitions
 
 **Sections should FLOW, not stack.** Define how each section connects to the next:
 
-- **ONE page background**: the entire page shares ONE background color. Do NOT assign per-section backgrounds. Sections are separated by spacing, layout shifts, and typography — not by painting every section a different color. (Max 1-2 exceptions per page for deliberate narrative breaks like a CTA band.)
+- **Visual continuity**: think about what holds the page together as one cohesive experience. How do sections connect rather than just stack?
 - **Content bridges**: the last line of one section sets up the next ("But what about X?" → next section answers X)
-- **Layout variety**: if section 1 is centered text, section 2 should be asymmetric. If 2 is a grid, 3 should be full-width. Never repeat the same layout twice in a row.
+- **Layout variety**: vary layouts between sections so the page has visual rhythm and doesn't feel like stacked boxes
 - **Progressive disclosure**: each section reveals more depth — start broad, get specific
-- **Spacing as separation**: use 120-200px between major sections. Whitespace IS the divider. You do not need color changes.
 
 Save the section plan to `.claude/context/page-architecture.md`.
 
@@ -124,6 +97,11 @@ Save the section plan to `.claude/context/page-architecture.md`.
 
 **Now that you know WHAT you're building, define HOW it looks.**
 
+Before filling in values, read the impeccable reference guides for informed decisions:
+- **Color**: `.claude/skills/frontend-design/reference/color-and-contrast.md` — OKLCH for perceptually uniform palettes, 60-30-10 rule, tinted neutrals, WCAG contrast ratios
+- **Typography**: `.claude/skills/frontend-design/reference/typography.md` — modular scales, font selection, vertical rhythm, font loading strategy
+- **Spacing**: `.claude/skills/frontend-design/reference/spatial-design.md` — 4pt base system, semantic tokens, hierarchy through space
+
 Create `.claude/context/design-system.md`:
 
 ### Colors
@@ -131,20 +109,18 @@ Create `.claude/context/design-system.md`:
 Primary:        #_____ (main brand color — derived from product personality)
 Secondary:      #_____ (supporting color)
 Accent:         #_____ (CTAs, highlights)
-Background:     #_____ (THE page background — one color for the whole page, NOT pure white, NOT pure black)
-Surface:        #_____ (cards, elevated elements — slightly different from background)
-Text Primary:   #_____ (headlines — NOT pure black)
+Background:     #_____ (page background — derived from product mood)
+Surface:        #_____ (cards, elevated elements)
+Text Primary:   #_____ (headlines)
 Text Secondary: #_____ (body, descriptions)
 Text Muted:     #_____ (captions, hints)
 Border:         #_____ (dividers, outlines)
 ```
 
-**⚠️ COLOR RULES:**
-- Default to LIGHT backgrounds unless the style explicitly requires dark
-- Never use pure black (#000000) or pure white (#FFFFFF) — use tinted variants
-- Section backgrounds should be SUBTLE variations (5-10% shift), not black↔white alternation
+**Color considerations:**
 - Ask the developer: "Light or dark?" — don't assume
-- Test: screenshot your palette and squint — if it looks like a zebra, fix it
+- Consider avoiding pure black/white — tinted variants feel more intentional
+- Think about how section transitions will work — will you rely on background color changes or spacing/layout shifts?
 
 ### Typography
 ```
@@ -187,8 +163,6 @@ Before writing any code:
 - [ ] Page architecture defined (`.claude/context/page-architecture.md`)
 - [ ] Design system defined (`.claude/context/design-system.md`)
 - [ ] Colors pass WCAG AA contrast (4.5:1 text on background)
-- [ ] No pure black / pure white anywhere
-- [ ] Section backgrounds are subtle variations, not alternating extremes
 - [ ] Typography scale is consistent
 - [ ] Page flow tells a story, not just lists features
 

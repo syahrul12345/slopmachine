@@ -8,69 +8,36 @@ You are designing in the **Digital Impressionism** style. Soft, blurred forms wi
 - **Emotional resonance** — design should make people feel, not just see
 - **Abstraction as invitation** — reduced detail lets viewers project their own meaning
 
-## Typography Rules
-- Light to regular weight sans-serif: Inter Light, Geist Thin, SF Pro Light
-- Hero: 48-72px, light weight (300-400) — delicate, not bold
-- Body: 16-18px, regular weight, high line-height (1.8)
-- Text colors: soft, muted — never pure black (use #4A4A4A or lighter)
-- Consider slight letter-spacing on headlines (+0.01em) for airiness
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- Soft, desaturated pastels: lavender (#D8D0E8), rose mist (#E8C8D8), sky blue (#C8D8E8)
-- Backgrounds: very soft gradient washes, barely perceptible color shifts
-- Text: muted charcoal (#4A4A4A) on light, soft white (#F0EDE8) on dark
-- Accent: one soft hue, never saturated
-- Think: dawn light, fog, watercolor bleeds
+## Typography
+Light to regular weight — delicate, not bold. High line-height for airiness. Muted text colors, never harsh. Slight letter-spacing on headlines for breathing room.
 
-## Visual Techniques
-```css
-/* Frosted, blurred background sections */
-.impressionist-section {
-  backdrop-filter: blur(40px);
-  background: rgba(255, 255, 255, 0.3);
-}
+## Color Mood
+Soft, desaturated pastels — lavender, rose mist, sky blue. Barely-perceptible color shifts in background gradients. One soft accent hue, never saturated. Think: dawn light, fog, watercolor bleeds.
 
-/* Soft glow on elements */
-.glow-element {
-  filter: blur(0.5px);
-  box-shadow: 0 0 60px rgba(168, 130, 200, 0.2);
-}
-
-/* Abstract blob backgrounds */
-.blob {
-  background: radial-gradient(ellipse, rgba(200, 180, 230, 0.4), transparent 70%);
-  filter: blur(60px);
-  animation: float 20s ease-in-out infinite;
-}
-```
+## Techniques
+- Backdrop-filter blur for frosted sections
+- Soft glow via subtle box-shadow in brand hues
+- Abstract blob backgrounds using radial gradients with heavy blur
+- Overlapping soft shapes as background elements
+- Content floating in space — no hard containers or borders
 
 ## Layout
-- Generous whitespace — 160-240px between sections
-- Content floats in space — no hard containers or borders
-- Overlapping soft blobs/shapes as background elements
-- Hero: minimal text, large abstract visual, lots of breathing room
-- Asymmetric but balanced — elements drift rather than snap to grid
+Generous whitespace — more than most styles. Content floats rather than being contained. Overlapping soft blobs/shapes as backgrounds. Asymmetric but balanced — elements drift rather than snap to grid.
 
 ## Imagery
-- Abstract: soft blurs, out-of-focus photography, light leaks
-- Generated art: diffused gradients, watercolor-style textures
-- Never sharp product shots — everything filtered through soft focus
-- Animated floating particles or bokeh effects (subtle, slow)
+Soft blurs, out-of-focus photography, light leaks. Diffused gradients, watercolor-style textures. Animated floating particles or bokeh effects (subtle, slow). Never sharp product shots — everything filtered.
 
 ## Interactions
-- Ultra-slow transitions (600-1000ms ease)
-- Hover: soft glow increase, slight blur change
-- Scroll: elements emerge from blur to slightly-less-blur (never fully sharp)
-- Parallax: very slow, dreamy movement (5-10% speed)
-- Mouse-follow: subtle gradient shift based on cursor position
+Ultra-slow transitions. Hover with soft glow increase, slight blur change. Elements emerge from blur on scroll. Very slow dreamy parallax. Mouse-follow gradient shifts.
 
-## What NOT to Do
-- No sharp edges, hard borders, or crisp shadows
-- No bold/heavy typography
-- No high-contrast color combinations
-- No grid-heavy layouts with rigid structure
-- No fast, snappy animations
-- No sharp product photography or screenshots
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Using sharp edges, hard borders, or crisp shadows
+- Choosing bold/heavy typography
+- Building grid-heavy layouts with rigid structure
+- Making fast, snappy animations
 
 ## Reference Sites
 - [Manus AI](https://manus.im/about)

@@ -8,71 +8,30 @@ You are designing in the **Non-Brand Academia** style. Stripped-down essentials.
 - **Anti-branding** — no logos everywhere, no color splashes, no mascots
 - **Information hierarchy** — clear structure that guides reading, like a research paper
 
-## Typography Rules
-- Serif for body text (source of academic credibility): Charter, Crimson Pro, Source Serif Pro, Georgia
-- Sans-serif for headings and navigation: Inter, IBM Plex Sans, Geist
-- Hero: 36-48px, serif, regular to medium weight (smaller than typical — content density matters)
-- Body: 17-19px serif, generous line-height (1.8) for comfortable reading
-- Monospace for code, data, and technical labels: JetBrains Mono, IBM Plex Mono
-- Long-form text columns: max 680px width for optimal readability
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- **Paper white**: #FAFAF8 or #FFFFFF
-- **Text**: #1A1A1A (titles), #333333 (body), #666666 (secondary)
-- **Links**: understated blue (#2563EB) or simply underlined text in body color
-- **Borders**: very light (#E5E5E5)
-- **Accent**: ONE color, used sparingly — only for links and interactive elements
-- No backgrounds, no sections of color — just text on white
+## Typography
+Serif for body text signals academic credibility (Charter, Crimson Pro, Source Serif Pro, Georgia). Sans-serif for headings and navigation. Monospace for code, data, and technical labels. Long-form text columns at optimal reading width. Generous line-height for comfortable reading.
+
+## Color Mood
+Paper white with near-black text. Very light borders. Understated link color — or simply underlined text in body color. One accent color, used sparingly and only for interactive elements. No section backgrounds — just text on white.
 
 ## Layout
-- Single column, content-focused (680px max body, 1080px max page)
-- No hero section — start with title and intro like a paper
-- Dense but readable — more content per viewport than typical marketing sites
-- Sections divided by horizontal rules or extra whitespace (no decorative dividers)
-- Navigation: minimal, top-left or top-right, no mega-menus
-- Footer: just links, no decorative elements
-
-## Structure
-```
-Title (h1, large)
-Subtitle/abstract (p, gray, italic)
----
-Section 1 heading (h2)
-Body text with inline links...
-
-Section 2 heading (h2)
-Body text...
-  - Bullet points for lists
-  - Data or citations
-
-Figures/charts (if needed, clean and labeled)
----
-References / footnotes
-```
+Single column, content-focused. No hero section — start with title and intro like a paper. Dense but readable — more content per viewport than typical marketing sites. Sections divided by horizontal rules or extra whitespace (no decorative dividers). Minimal navigation, no mega-menus. Footer with just links.
 
 ## Visual Elements
-- **Tables**: clean, minimal borders, zebra-striped rows
-- **Charts**: D3.js or simple SVG — no fancy animations, just clear data viz
-- **Figures**: labeled with captions below, centered
-- **Code blocks**: subtle gray background, monospace
-- No icons, illustrations, or decorative imagery
-- Occasional data visualizations or diagrams (functional, not decorative)
+Clean, minimal tables. Simple SVG charts or data visualizations — functional, not decorative. Labeled figures with captions. Code blocks with subtle backgrounds. No icons, illustrations, or decorative imagery.
 
 ## Interactions
-- Almost none — the less animation, the more credible
-- Link hover: underline or subtle color change
-- Smooth scroll to sections (if using anchor nav)
-- Optional: sticky table of contents for long pages
-- No scroll animations, no parallax, no reveals
+Almost none — the less animation, the more credible. Link hover with subtle underline or color change. Smooth scroll to sections if using anchor navigation. Optional sticky table of contents for long pages.
 
-## What NOT to Do
-- No hero images or gradient backgrounds
-- No animations or scroll effects
-- No mascots, illustrations, or decorative imagery
-- No card grids or marketing-style layouts
-- No "above the fold" CTA urgency
-- No testimonials in fancy carousel formats
-- No brand colors splashed everywhere
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Adding hero images or gradient backgrounds (this style is text-first)
+- Building scroll animations or parallax effects (distracting)
+- Including mascots, illustrations, or decorative imagery
+- Using card grids or marketing-style layouts
+- Adding "above the fold" urgency tactics
 
 ## Reference Sites
 - [Thinking Machines Lab](https://thinkingmachines.ai/)

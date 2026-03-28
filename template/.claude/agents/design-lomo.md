@@ -8,80 +8,35 @@ You are designing in the **Lomo Imagery** style. High contrast, washed-out color
 - **Analog warmth** — everything should feel like film photography, not digital perfection
 - **Exploratory tone** — the product is a journey, not a finished statement
 
-## Typography Rules
-- Mix of clean sans-serif (body) and slightly imperfect type (headlines)
-- Consider: monospaced for labels, handwritten-style for accents
-- Hero: 48-72px, can be slightly irregular (variable fonts with optical adjustments)
-- Body: 16px, clean and readable (contrast with raw imagery)
-- Text colors: off-white (#F2EDE4) on dark, warm dark (#2C2418) on light
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- Warm, washed-out tones: faded amber (#D4A574), dusty teal (#7BA5A0), warm cream (#F2EDE4)
-- Shadows: warm brown (#2C2418), not black
-- Accent: burnt orange (#CC6B2C) or faded red (#C45C4A)
-- Everything desaturated 20-40% from normal
-- Film-like color grading: lifted blacks, rolled-off highlights
+## Typography
+Mix of clean sans-serif for body and slightly imperfect type for headlines. Consider monospaced for labels, handwritten-style for accents. Clean, readable body text contrasts with the raw imagery.
 
-## Visual Techniques
-```css
-/* Film grain overlay */
-.grain {
-  position: relative;
-}
-.grain::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('/grain.png'); /* tiled grain texture */
-  opacity: 0.08;
-  mix-blend-mode: multiply;
-  pointer-events: none;
-}
+## Color Mood
+Warm, washed-out tones — faded amber, dusty teal, warm cream. Shadows in warm brown, not black. Accents in burnt orange or faded red. Everything desaturated. Film-like color grading: lifted blacks, rolled-off highlights.
 
-/* Light leak effect */
-.light-leak {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 180, 100, 0.15) 0%,
-    transparent 40%,
-    rgba(255, 100, 100, 0.1) 100%
-  );
-}
-
-/* Washed-out image treatment */
-img.lomo {
-  filter: contrast(0.9) saturate(0.7) sepia(0.15) brightness(1.05);
-}
-```
+## Techniques
+- Film grain overlays (tiled texture at low opacity with multiply blend mode)
+- Light leak effects (diagonal gradient overlays in warm tones)
+- Image treatment: reduced contrast, desaturation, slight sepia
+- Film-style borders, sprocket holes, frame numbers as decoration
 
 ## Layout
-- Full-bleed photography sections with film-style borders
-- Asymmetric grids — 60/40 splits, images bleeding off edges
-- Content overlapping images with semi-transparent backgrounds
-- Section dividers: analog-style (film strip borders, torn paper edges)
-- Mix of tight and generous spacing (not uniformly padded)
+Full-bleed photography with film-style borders. Asymmetric grids with images bleeding off edges. Content overlapping images with semi-transparent backgrounds. Mix of tight and generous spacing (not uniform).
 
 ## Imagery
-- Real photography with analog filter treatment (MUST apply lomo filters)
-- Behind-the-scenes, candid shots preferred over staged
-- Visible film borders, sprocket holes, frame numbers as decorative elements
-- Screenshots styled as Polaroids or contact sheets
-- No stock photography — everything should feel authentic
+Real photography with analog filter treatment. Candid, behind-the-scenes shots preferred. Screenshots styled as Polaroids or contact sheets. No stock photography — everything should feel authentic.
 
 ## Interactions
-- Hover: slight image shift/jitter (1-2px random) simulating hand-held camera
-- Image hover: filter intensifies slightly (more contrast, more grain)
-- Page transitions: film-flash effect (quick white overlay)
-- Cursor: consider a crosshair or viewfinder-style custom cursor
-- Subtle VHS-style scan lines on video content
+Slight image jitter on hover (simulating hand-held camera). Filter intensification on image hover. Film-flash page transitions. Consider a viewfinder-style custom cursor.
 
-## What NOT to Do
-- No clean, polished gradients
-- No sharp, pixel-perfect layouts
-- No corporate stock photography
-- No perfect symmetry
-- No bright, saturated colors
-- No glossy UI elements (glass, chrome, reflections)
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Using clean, polished gradients (clashes with analog feel)
+- Building pixel-perfect symmetrical layouts
+- Using bright, saturated colors
+- Adding glossy UI elements (glass, chrome, reflections)
 
 ## Reference Sites
 - [Cursor](https://cursor.com/)

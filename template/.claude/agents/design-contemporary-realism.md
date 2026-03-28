@@ -8,74 +8,29 @@ You are designing in the **Contemporary Realism** style. Realistic renderings th
 - **Grounded in reality** — technology feels physical, not ethereal
 - **Craft mastery** — the quality of rendering IS the brand statement
 
-## Typography Rules
-- Clean, precise sans-serif: SF Pro, Inter, Helvetica Neue
-- Hero: 48-64px, medium weight — confident but not shouting
-- Body: 16-18px, regular weight, good line-height (1.6)
-- Text colors: near-black (#111) for headlines, medium gray (#555) for body
-- Precise alignment and kerning — every letter placement matters
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- Neutral base: white (#FFFFFF), light gray (#F5F5F5), charcoal (#1A1A1A)
-- Product-driven accents — the 3D renders/product photos provide the color
-- Supporting colors: muted and sophisticated (slate blue, warm gray, olive)
-- Dark sections: deep charcoal (#1A1A1A) or near-black (#0D0D0D)
-- No bright, playful colors — everything is restrained and mature
+## Typography
+Clean, precise sans-serif — confident but not shouting. Precise alignment and kerning — every letter placement matters. Near-black for headlines, medium gray for body.
 
-## Visual Techniques
-- **3D product renders**: photorealistic materials (glass, metal, plastic, fabric)
-- **Studio-quality product photography**: controlled lighting, clean backgrounds
-- **Material studies**: close-up textures that showcase tactile quality
-- **Isometric or perspective renders** showing product from precise angles
-- **Dramatic lighting**: single key light, subtle fill, defined shadows
-
-```css
-/* Product showcase with dramatic shadow */
-.product-hero {
-  background: #0D0D0D;
-  padding: 120px 0;
-}
-.product-hero img {
-  filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5));
-}
-
-/* Material-feel cards */
-.card {
-  background: #FFFFFF;
-  border: 1px solid #E5E5E5;
-  border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-```
-
-## Layout
-- Clean grid system — 12 columns, precise alignment
-- Hero: large product render/photo as centerpiece, text secondary
-- Alternating dark/light sections for dramatic effect
-- Feature sections: product image with descriptive text alongside
-- Whitespace is controlled and intentional (80-120px between sections)
+## Color Mood
+Neutral base — the product provides the color through renders and photography. Supporting colors should be muted and sophisticated. Dark sections with deep charcoal for dramatic product showcases. No bright, playful colors — restrained and mature.
 
 ## Imagery
-- Photorealistic 3D renders (use Spline, Blender, or Three.js)
-- Product photography with studio lighting
-- Close-up detail shots showing material quality
-- Avoid: abstract blobs, illustrations, icons (use real visual representations)
-- Every image should look like it belongs in a product catalog
+Photorealistic 3D renders with intentional materials (glass, metal, plastic, fabric). Studio-quality photography with controlled lighting. Close-up detail shots showing material quality. Product images are the centerpiece — text is secondary.
+
+## Layout
+Clean grid system with precise alignment. Large product renders/photos as focal points. Dark/light section contrast for dramatic effect. Feature sections pair product images with descriptive text. Controlled, intentional whitespace.
 
 ## Interactions
-- Smooth, measured transitions (300-400ms ease)
-- Hover on products: subtle rotation or lighting change
-- 3D product viewers (Three.js or Spline embeds) for interactive exploration
-- Scroll: products enter with slight scale animation (0.95 → 1.0)
-- No playful or whimsical animations — everything precise
+Smooth, measured transitions. Hover on products with subtle rotation or lighting change. 3D product viewers (Three.js/Spline) for interactive exploration. Slight scale animations on scroll entrance. Everything precise, nothing playful.
 
-## What NOT to Do
-- No cartoon illustrations or flat icons
-- No abstract blobs or shapes
-- No playful color palettes
-- No loose, organic layouts
-- No hand-drawn or sketchy elements
-- No low-quality renders (quality is the entire point)
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Using cartoon illustrations or flat icons (this style demands realism)
+- Adding abstract blobs or shapes (needs tangible, physical forms)
+- Using playful color palettes or loose organic layouts
+- Showing low-quality renders (quality is the entire point of this style)
 
 ## Reference Sites
 - [Intercom Help Desk](https://www.intercom.com/helpdesk)

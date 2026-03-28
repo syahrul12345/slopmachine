@@ -8,67 +8,33 @@ You are designing in the **Organic Gradients** style. Dimensional gradient trans
 - **Dimensional feel** — gradients suggest light, atmosphere, depth
 - **Distinctiveness through variation** — no two gradient sections should feel identical
 
-## Typography Rules
-- Clean sans-serif that doesn't compete with gradient backgrounds: Inter, Geist, SF Pro
-- White or very light text on gradient backgrounds — ensure WCAG AA contrast
-- Hero: 56-80px, semibold to bold
-- Body on light sections: 16-18px, dark text
-- Text on gradients should have subtle text-shadow for readability
+*These are creative starting points. Derive specific values from your product's personality and the design system you brainstorm during kickoff.*
 
-## Color Palette
-- **Primary gradient**: 3-5 color stops with soft transitions
-- Popular palettes:
-  - Warm sunset: peach (#FFB088) → rose (#FF6B8A) → violet (#8B5CF6)
-  - Ocean depth: teal (#06B6D4) → indigo (#6366F1) → purple (#A855F7)
-  - Aurora: green (#34D399) → cyan (#22D3EE) → blue (#3B82F6)
-  - Dusk: amber (#F59E0B) → pink (#EC4899) → purple (#8B5CF6)
-- **Grain overlay**: Add CSS noise/grain texture at 3-8% opacity over gradients
-- Light sections between gradient sections for contrast and breathing room
+## Typography
+Clean sans-serif that doesn't compete with gradient backgrounds. Light text on gradients must pass WCAG contrast — add subtle text-shadow for readability. Clean dark text on light sections.
 
-## Gradient Techniques
-```css
-/* Organic gradient with noise */
-.gradient-section {
-  background: linear-gradient(135deg, #FFB088 0%, #FF6B8A 40%, #8B5CF6 100%);
-  position: relative;
-}
-.gradient-section::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,..."); /* noise SVG */
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-}
-```
-- Use `radial-gradient` for spotlight/glow effects
-- Animated gradient shifts on hover (background-position transition)
-- Mesh gradients for hero sections (CSS or SVG)
+## Color Mood
+Multi-stop gradients with soft transitions — think sunset warmth, ocean depth, or aurora light depending on your product mood. Grain/noise texture overlaid at low opacity for tactile feel. Light sections between gradients for breathing room.
+
+## Techniques
+- Noise/grain overlays using mix-blend-mode for texture
+- Radial gradients for spotlight/glow effects
+- Animated gradient shifts on hover
+- Mesh gradients for hero sections
+- Glassmorphism cards (backdrop-filter blur) on gradient backgrounds
 
 ## Layout
-- Full-bleed gradient hero sections
-- Alternate: gradient section → clean white section → gradient section
-- Cards with frosted glass effect (`backdrop-filter: blur`) on gradient backgrounds
-- Generous padding inside gradient sections (120-160px vertical)
-
-## Imagery
-- Glassmorphism cards over gradient backgrounds
-- Product mockups floating on gradient fields
-- Abstract 3D shapes with matching gradient materials
-- Avoid photography on gradient sections (clashes)
+Full-bleed gradient hero sections. Frosted glass cards over gradient backgrounds. Product mockups floating on gradient fields. Abstract 3D shapes with matching gradient materials.
 
 ## Interactions
-- Gradient hue shift on scroll (subtle, using CSS custom properties)
-- Button hover: gradient intensity increase + subtle glow
-- Cards: frosted glass reveal on hover
-- Smooth color transitions (500ms+)
+Gradient hue shift on scroll. Button hover with gradient intensity increase and glow. Frosted glass reveals on card hover. Smooth color transitions.
 
-## What NOT to Do
-- No flat, 2-color linear gradients (too generic)
-- No gradients without grain/texture (looks like PowerPoint)
-- No clashing gradient + photography combos
-- No gradient text unless on a solid background with proper fallback
-- No dark sections without gradient — stay committed to the palette
+## Tendencies to Question
+If you notice yourself doing these, pause and ask if they serve THIS product:
+- Using flat two-color linear gradients (too generic — add stops, grain, variation)
+- Skipping the grain/texture overlay (looks like PowerPoint without it)
+- Mixing gradient sections with clashing photography
+- Using gradient text on busy backgrounds without fallback
 
 ## Reference Sites
 - [OpenAI / ChatGPT](https://chatgpt.com/overview)
