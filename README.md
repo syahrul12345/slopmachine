@@ -88,6 +88,7 @@ CLAUDE.md                          ← Dynamic router (generated based on your s
   designer.md                      ← UI design, app store assets
   marketing.md                     ← Screenshots, videos, UGC, store listings
 .claude/workflows/
+  provision-services.md            ← Auto-provision Supabase, Vercel, Google Cloud, Apple, EAS
   local-dev.md                     ← Local Supabase + dev servers
   build-and-ship.md                ← Simulator test → screenshots → .ipa → TestFlight → review
   marketing-launch.md              ← Full marketing asset pipeline

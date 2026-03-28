@@ -71,6 +71,8 @@ Set up RevenueCat webhook to call a Supabase Edge Function:
 4. RevenueCat webhook URL: `https://<project>.supabase.co/functions/v1/revenuecat-webhook`
 
 ## Credentials Required (ask developer early!)
+> Run `.claude/workflows/provision-services.md` to guide RevenueCat setup.
+
 - [ ] RevenueCat iOS API key
 - [ ] RevenueCat Android API key
 - [ ] App Store Connect setup (app, in-app purchases)

@@ -38,6 +38,8 @@ npx expo install expo-apple-authentication expo-auth-session expo-web-browser ex
 - Redirect URLs: `exp://localhost:8081` (local), `{{PROJECT_NAME}}://` (production)
 
 ## Credentials Required (ask developer early!)
+> Run `.claude/workflows/provision-services.md` to auto-provision Google Cloud and guide Apple setup.
+
 - [ ] Apple Team ID
 - [ ] Apple Developer account email
 - [ ] Google iOS Client ID

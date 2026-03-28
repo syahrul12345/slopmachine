@@ -2,6 +2,8 @@
 
 Run this workflow to set up and start local development.
 
+> **First time?** Run `.claude/workflows/provision-services.md` first to create your Supabase project, deploy to Vercel, and populate `.env.local` with real keys. This workflow is for local development after provisioning.
+
 ## Prerequisites
 - Node.js 18+
 - Supabase CLI (`brew install supabase/tap/supabase`)

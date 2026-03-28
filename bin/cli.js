@@ -253,6 +253,7 @@ function generateClaudeMd(projectName, modules, designStyle) {
   if (modules.has('ecommerce')) lines.push('- **Ecommerce / Shopify**: load `.claude/agents/ecommerce.md`');
   if (modules.has('mobile') || modules.has('landing')) lines.push('- **Design tasks**: load `.claude/agents/designer.md` + active design style file');
   lines.push('- **Marketing tasks**: load `.claude/agents/marketing.md`');
+  lines.push('- **Provision external services**: run `.claude/workflows/provision-services.md`');
   lines.push('- **Multi-step workflows**: see `.claude/workflows/`');
   lines.push('');
 
@@ -463,7 +464,7 @@ async function promptModules() {
 function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExisting = false) {
   // Collect all files needed
   const agents = new Set(['marketing.md']); // always included
-  const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md', 'design-kickoff.md']); // always included
+  const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md', 'design-kickoff.md', 'provision-services.md']); // always included
   const libs = new Set();
   const dirs = new Set();
 
@@ -694,7 +695,8 @@ async function runInit() {
 Next steps:
   1. Review CLAUDE.md and update the Project section
   2. Run \`claude\`
-  3. Run the design-kickoff workflow before writing any UI
+  3. Run the provision-services workflow to set up Supabase, Vercel, etc.
+  4. Run the design-kickoff workflow before writing any UI
 `);
 }
 
@@ -835,6 +837,9 @@ ${modules.has('mobile') || modules.has('auth') || modules.has('crm') ? `
 ` : ''}
   # Open Claude and start building!
   claude
+
+  # Provision external services (Supabase, Vercel, Google Cloud, etc.)
+  # Run: .claude/workflows/provision-services.md
 
   # Run the design-kickoff workflow before writing any UI
   # It gathers product context + writes .impeccable.md in one session

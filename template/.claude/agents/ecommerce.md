@@ -154,6 +154,8 @@ Webhook endpoint: `https://<project>.supabase.co/functions/v1/shopify-webhook`
 Verify webhook signature using `X-Shopify-Hmac-Sha256` header.
 
 ## Credentials Required (ask developer early!)
+> Run `.claude/workflows/provision-services.md` to auto-provision Supabase and guide service setup.
+
 - [ ] Shopify store domain (your-store.myshopify.com)
 - [ ] Storefront API access token
 - [ ] Admin API access token (for server-side operations)
