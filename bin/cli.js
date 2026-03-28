@@ -482,6 +482,14 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
     agents.add('designer.md');
   }
 
+  // Copy .claude/settings.json (permissions for agent file access)
+  const settingsSrc = path.join(templateDir, '.claude', 'settings.json');
+  if (fs.existsSync(settingsSrc)) {
+    const settingsDest = path.join(targetDir, '.claude', 'settings.json');
+    copyFile(settingsSrc, settingsDest, projectName, skipExisting);
+    console.log('  ✅ .claude/settings.json created (file permissions for agents)');
+  }
+
   // Copy agents
   const agentsDir = path.join(targetDir, '.claude', 'agents');
   fs.mkdirSync(agentsDir, { recursive: true });

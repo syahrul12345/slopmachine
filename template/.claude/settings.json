@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(/.claude/**)",
+      "Edit(/.claude/**)",
+      "Write(/.claude/**)",
+      "Edit(/.impeccable.md)",
+      "Write(/.impeccable.md)",
+      "Read(/.impeccable.md)"
+    ]
+  }
+}
