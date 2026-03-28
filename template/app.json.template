@@ -42,17 +42,6 @@
           "icon": "./assets/notification-icon.png",
           "color": "#ffffff"
         }
-      ],
-      [
-        "react-native-purchases",
-        {
-          "ios": {
-            "apiKey": "YOUR_REVENUECAT_IOS_API_KEY"
-          },
-          "android": {
-            "apiKey": "YOUR_REVENUECAT_ANDROID_API_KEY"
-          }
-        }
       ]
     ],
     "experiments": {
