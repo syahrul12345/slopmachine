@@ -104,6 +104,49 @@ CLAUDE.md                          ← Dynamic router (generated based on your s
 5. When ready, run workflows: build-and-ship, marketing-launch
 6. Ship to TestFlight and App Store
 
+## Non-Interactive / Agent Usage
+
+When another Claude agent (or CI) needs to trigger slopmachine, pass `--modules` and `--style` to skip all interactive prompts:
+
+```bash
+# Full non-interactive scaffold
+npx github:syahrul12345/slopmachine my_app --modules mobile,landing,auth,payments --style minimal
+
+# Add to existing project non-interactively
+cd existing-app && npx github:syahrul12345/slopmachine init --modules landing,auth --style editorial
+```
+
+### Available modules
+**Products:** `mobile`, `landing`, `crm`
+**Features:** `auth`, `payments`, `push`, `analytics`, `ecommerce`
+
+### Available styles
+**Classic:** `minimal`, `editorial`, `immersive`, `brutalist`
+**AI Aesthetics:** `off-white`, `organic-gradients`, `digital-impressionism`, `lomo`, `contemporary-realism`, `sketch-scribble`, `academia`, `technical-illustrations`, `quirky-cute`, `morphing-objects`, `futuristic-surrealism`, `outer-space`, `ascii-pixels`, `generative-art`
+
+### What to do after scaffolding
+
+Once slopmachine finishes, the calling agent should:
+
+1. `cd` into the new project directory
+2. Read `CLAUDE.md` — it's the project router, tells you what agents/workflows exist
+3. Run the design-kickoff workflow (`.claude/workflows/design-kickoff.md`) before any UI work — this is an interactive session with the developer that establishes product context, brand personality, page narrative, and design system
+4. Start building — load the relevant agent files based on the task (e.g., `.claude/agents/mobile.md` for app development)
+
+### Agent integration example
+
+If you're building an orchestrator agent that scaffolds projects, here's the flow:
+
+```
+1. Ask the user what they want to build (product type, features, design vibe)
+2. Map their answers to slopmachine modules and style
+3. Run: npx github:syahrul12345/slopmachine <name> --modules <list> --style <style>
+4. cd into the project
+5. Read CLAUDE.md to understand the project structure
+6. Run the design-kickoff workflow interactively with the user
+7. Begin implementation using the relevant agent files
+```
+
 ## Requirements
 
 - Node.js 18+

@@ -4,8 +4,23 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const command = process.argv[2];
 const templateDir = path.join(__dirname, '..', 'template');
+
+// --- Parse CLI args ---
+const args = process.argv.slice(2);
+let command = null;
+let cliModules = null;
+let cliStyle = null;
+
+for (let i = 0; i < args.length; i++) {
+  if (args[i] === '--modules' && args[i + 1]) {
+    cliModules = args[++i].split(',').map(s => s.trim()).filter(Boolean);
+  } else if (args[i] === '--style' && args[i + 1]) {
+    cliStyle = args[++i];
+  } else if (!args[i].startsWith('--')) {
+    if (!command) command = args[i];
+  }
+}
 
 // --- Design styles ---
 
@@ -338,6 +353,44 @@ function generateClaudeMd(projectName, modules, designStyle) {
 // --- Prompt ---
 
 async function promptModules() {
+  // Non-interactive mode: --modules and --style provided via CLI
+  if (cliModules) {
+    // Validate all module names
+    const validModules = Object.keys(MODULES);
+    for (const mod of cliModules) {
+      if (!validModules.includes(mod)) {
+        console.error(`Error: Unknown module "${mod}". Valid modules: ${validModules.join(', ')}`);
+        process.exit(1);
+      }
+    }
+
+    const resolved = resolveDependencies(cliModules);
+    const autoAdded = [...resolved].filter(m => !cliModules.includes(m));
+    if (autoAdded.length > 0) {
+      console.log(`  Auto-enabled: ${autoAdded.join(', ')} (required by dependencies)`);
+    }
+
+    let designStyle = null;
+    if (resolved.has('mobile') || resolved.has('landing')) {
+      if (cliStyle) {
+        if (!DESIGN_STYLES[cliStyle]) {
+          console.error(`Error: Unknown design style "${cliStyle}". Valid styles: ${Object.keys(DESIGN_STYLES).join(', ')}`);
+          process.exit(1);
+        }
+        designStyle = cliStyle;
+      } else {
+        // Default to minimal if visual modules selected but no style given
+        designStyle = 'minimal';
+        console.log('  No --style specified, defaulting to "minimal"');
+      }
+      console.log(`  Design style: ${designStyle}`);
+    }
+
+    console.log(`  Modules: ${[...resolved].join(', ')}`);
+    return { modules: resolved, designStyle };
+  }
+
+  // Interactive mode: prompt the user
   const { default: inquirer } = await import('inquirer');
 
   console.log('');
@@ -547,12 +600,19 @@ async function main() {
 function printUsage() {
   console.log(`
 Usage:
-  slopmachine <project-name>    Create a new project from scratch
-  slopmachine init              Add slopmachine Claude configs to an existing project
+  slopmachine <project-name>                          Interactive mode (prompts for modules + style)
+  slopmachine <project-name> --modules m1,m2 --style  Non-interactive mode (for CI or agent use)
+  slopmachine init                                    Add configs to existing project
+
+Options:
+  --modules <list>   Comma-separated modules: ${Object.keys(MODULES).join(', ')}
+  --style <name>     Design style: ${Object.keys(DESIGN_STYLES).join(', ')}
 
 Examples:
-  slopmachine my-app            Scaffold new project (interactive module selection)
-  cd existing-app && slopmachine init   Add agents, workflows, CLAUDE.md to existing project
+  slopmachine my-app
+  slopmachine my-app --modules mobile,landing,auth,payments --style minimal
+  cd existing-app && slopmachine init
+  cd existing-app && slopmachine init --modules landing,auth --style editorial
 `);
   process.exit(0);
 }
