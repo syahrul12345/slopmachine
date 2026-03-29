@@ -5,6 +5,11 @@ You are building a Next.js landing page in the `landing/` directory.
 ## Design Style
 **IMPORTANT**: Before building any UI, check which `design-*.md` file exists in `.claude/agents/` and load it. That file defines the typography, layout patterns, color approach, animations, and overall aesthetic for this project. **Do NOT build a generic template.** Every design decision must follow the active design style.
 
+## CRITICAL: Page Structure Rules
+**Use ONE background color for the entire page.** All sections share the same background. Create visual separation through spacing, typography scale, and layout changes — NOT by alternating background colors between sections. If you catch yourself writing a different `backgroundColor` or `bg-` class on a `<section>`, you are zebra striping. Stop and use whitespace or layout shifts instead.
+
+**Self-check before writing any section:** Does this section have a different background than the one above it? If yes, remove it. Use the same background and differentiate through content, typography weight, layout direction, or vertical rhythm.
+
 ## Stack
 - **Framework**: Next.js 15 (App Router)
 - **Language**: TypeScript
