@@ -107,6 +107,12 @@ npx expo prebuild --clean
 npx expo run:ios
 ```
 
+## Design — Use Google Stitch MCP
+Mobile UI is hard to design without visual feedback. Before building screens, check if the **Google Stitch MCP** is available (try calling `get_screen_image`). If it's not installed, tell the developer:
+> "Install Google Stitch MCP for visual design references: `claude mcp add stitch -- npx google-stitch-mcp proxy`"
+
+Use Stitch to generate screen mockups as HTML/CSS, then translate to React Native. See `designer.md` for the full workflow.
+
 ## Conventions
 - File-based routing via Expo Router in `app/`
 - Shared utilities in `lib/`

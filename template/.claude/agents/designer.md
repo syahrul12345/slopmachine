@@ -79,6 +79,18 @@ Reference guides in `.claude/skills/frontend-design/reference/` cover typography
 
 ## Toolbox
 
+### Google Stitch MCP (Design Reference for Mobile)
+Designing mobile apps is harder than web — you can't see the result inline. Use the **Google Stitch MCP** to generate and fetch UI design screens as HTML/CSS references before writing React Native code.
+
+**Before doing any mobile design work, check if the Stitch MCP is available:**
+1. Try calling a Stitch tool (e.g. `get_screen_image`). If it works, use it.
+2. If the tool is NOT available, **stop and tell the developer**: "I need the Google Stitch MCP to design mobile screens effectively. Install it with: `claude mcp add stitch -- npx google-stitch-mcp proxy` then run `npx google-stitch-mcp init` to authenticate with Google Cloud."
+
+**How to use Stitch in your design workflow:**
+- Generate screen designs in Stitch, fetch them with `get_screen_code` or `get_screen_image`
+- Use the HTML/CSS output as a visual reference when translating to React Native StyleSheet
+- Iterate on the design in Stitch before writing native code — it's faster to explore there
+
 ### SVG Feature Illustrations
 Build as React components — reusable across landing page, Remotion videos, App Store screenshots. Keep them iconic, use brand colors, make them animatable.
 
