@@ -1,7 +1,43 @@
 -- Seed data for local development
 -- Run with: supabase db reset (applies migrations then runs this file)
 
--- push_tokens table (created by migration, seeded here)
+-- ============================================================
+-- TEST USER — REQUIRED for App Store review
+-- Apple reviewers sign in with this account.
+-- Also created in production Supabase before review submission.
+-- ============================================================
+-- Email: appletester@flintblocks.io
+-- Password: appletester
+--
+-- Supabase local dev auto-confirms email, so this user is
+-- immediately usable after `supabase db reset`.
+INSERT INTO auth.users (
+  id, instance_id, email, encrypted_password,
+  email_confirmed_at, created_at, updated_at,
+  raw_app_meta_data, raw_user_meta_data,
+  aud, role
+) VALUES (
+  '00000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000000',
+  'appletester@flintblocks.io',
+  crypt('appletester', gen_salt('bf')),
+  now(), now(), now(),
+  '{"provider":"email","providers":["email"]}',
+  '{"display_name":"Apple Tester"}',
+  'authenticated', 'authenticated'
+);
+
+INSERT INTO auth.identities (
+  id, user_id, provider_id, provider,
+  identity_data, created_at, updated_at
+) VALUES (
+  '00000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000001',
+  'appletester@flintblocks.io', 'email',
+  '{"sub":"00000000-0000-0000-0000-000000000001","email":"appletester@flintblocks.io"}',
+  now(), now()
+);
+
 -- Add test data as your schema evolves
 
 -- Example:

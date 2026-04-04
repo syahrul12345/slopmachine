@@ -52,6 +52,9 @@ npx expo run:ios
 **Auth (if active):**
 - [ ] Sign in with Apple works
 - [ ] Sign in with Google works
+- [ ] Sign in with email/password works (test: appletester@flintblocks.io / appletester)
+- [ ] Sign up with email works
+- [ ] Forgot password flow works
 - [ ] Sign out works
 - [ ] Auth state persists across app restart
 
@@ -86,13 +89,30 @@ xcrun simctl boot "iPhone SE (3rd generation)"
 **STOP HERE if anything fails. Fix issues before proceeding.**
 
 ### B2: Capture Screenshots
+
+**Option A — Playwright MCP (preferred, automated):**
+Check if Playwright MCP is available by attempting `browser_navigate`. If not installed, tell the developer:
+> "Install Playwright MCP for automated screenshots: `claude mcp add playwright -- npx @anthropic-ai/mcp-playwright`"
+
+```
+1. Start Expo web: npx expo start --web
+2. Use Playwright MCP to navigate to each key screen
+3. Set viewport to iPhone sizes:
+   - 6.7" (1290x2796) → marketing/screenshots/iphone-6.7/
+   - 6.1" (1170x2532) → marketing/screenshots/iphone-6.1/
+   - 5.5" (1242x2208) → marketing/screenshots/iphone-5.5/
+4. Use browser_take_screenshot for each screen
+5. Save to marketing/screenshots/
+```
+
+**Option B — iOS Simulator (manual fallback):**
 ```bash
 xcrun simctl io "iPhone 15 Pro Max" screenshot marketing/screenshots/iphone-6.7/screen-1.png
 xcrun simctl io "iPhone 15" screenshot marketing/screenshots/iphone-6.1/screen-1.png
 xcrun simctl io "iPhone SE (3rd generation)" screenshot marketing/screenshots/iphone-5.5/screen-1.png
 ```
 
-Capture these screens (navigate to each in the simulator first):
+Capture these screens (navigate to each first):
 1. **Hero shot** — main screen showing core value
 2. **Key feature #1** — most compelling feature
 3. **Key feature #2** — second most compelling feature
@@ -135,7 +155,13 @@ Verify review content is ready (all should be in `marketing/`):
 - [ ] Category (primary + secondary)
 - [ ] Privacy policy URL
 - [ ] Support URL
-- [ ] App Review notes (login credentials for reviewer if needed)
+- [ ] App Review notes — MUST include test credentials:
+   ```
+   Test Account:
+   Email: appletester@flintblocks.io
+   Password: appletester
+   ```
+   Also verify this user exists in production Supabase (Authentication → Users)
 
 Submit via App Store Connect or Fastlane:
 ```bash

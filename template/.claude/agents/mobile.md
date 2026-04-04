@@ -8,6 +8,11 @@ You are building a mobile app with Expo + React Native + TypeScript + Expo Route
 - **Language**: TypeScript
 - **Backend**: Supabase (see separate auth/payments/push agents if active)
 
+## Available MCP Tools
+Check for these MCP servers and use them when available:
+- **Google Stitch MCP** — UI design mockups (`get_screen_image`). See "Design" section below.
+- **Playwright MCP** — Browser automation and screenshots (`browser_navigate`, `browser_take_screenshot`). Use for App Store screenshots, automated UI review, and visual verification. See "Screenshots" section below.
+
 ## File Structure
 ```
 app/                    # Expo Router screens
@@ -122,6 +127,24 @@ Mobile UI is hard to design without visual feedback. Before building screens, ch
 > "Install Google Stitch MCP for visual design references: `claude mcp add stitch -- npx google-stitch-mcp proxy`"
 
 Use Stitch to generate screen mockups as HTML/CSS, then translate to React Native. See `designer.md` for the full workflow.
+
+## Screenshots — Use Playwright MCP
+A **Playwright MCP** server may be available for browser automation and screenshots. Check if it's installed by attempting a Playwright tool call (e.g., `browser_navigate`). If it's not installed, tell the developer:
+> "Install Playwright MCP for automated screenshots: `claude mcp add playwright -- npx @anthropic-ai/mcp-playwright`"
+
+**Use Playwright MCP for:**
+- **App Store screenshots**: Run the app in a web browser (Expo web), navigate to each key screen, and capture screenshots at required device sizes
+- **Automated UI review**: Take screenshots after building a feature to visually verify the result
+- **Marketing assets**: Capture polished screenshots for `marketing/screenshots/`
+
+**Screenshot workflow for App Store:**
+```
+1. Start Expo web: npx expo start --web
+2. Use Playwright to navigate to each screen
+3. Set viewport to iPhone sizes (1290x2796 for 6.7", 1242x2688 for 6.5", etc.)
+4. Capture screenshots and save to marketing/screenshots/
+5. Optionally composite with device mockups using Remotion
+```
 
 ## Conventions
 - File-based routing via Expo Router in `app/`
