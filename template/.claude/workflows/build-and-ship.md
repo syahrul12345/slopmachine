@@ -34,7 +34,7 @@ supabase functions deploy   # Deploy Edge Functions (if any)
 - [ ] App runs on simulator without crashes
 - [ ] All active features verified (see checklist below)
 - [ ] Bundle ID set in `app.json`
-- [ ] Production environment variables configured in EAS
+- [ ] Production environment variables configured
 
 ### B1: Feature Verification
 Run the app on iOS simulator and test every active module:
@@ -101,23 +101,19 @@ Capture these screens (navigate to each in the simulator first):
 
 **Pro tip:** Use Remotion to render stylized screenshots — device mockup + feature text + gradient background. See `.claude/workflows/marketing-launch.md`.
 
-### B3: Build .ipa
+### B3: Build .ipa (LOCAL ONLY)
 ```bash
-# Production build (for App Store / TestFlight)
+# Production build — ALWAYS local, NEVER use EAS cloud
 eas build --profile production --platform ios --local
-
-# If local build fails, fall back to cloud
-eas build --profile production --platform ios
 ```
+**`eas build` without `--local` is BANNED.** No cloud builds.
 
-### B4: Push to TestFlight
+### B4: Push to TestFlight (Fastlane)
 ```bash
-# If built locally
-eas submit --platform ios --path ./build-*.ipa
-
-# If built on EAS cloud
-eas submit --platform ios
+# Upload via Fastlane (app-specific password is already configured)
+fastlane pilot upload --ipa ./build-*.ipa
 ```
+**`eas submit` is BANNED.** Always use Fastlane to upload.
 
 **TestFlight verification:**
 - [ ] App installs from TestFlight
@@ -141,9 +137,9 @@ Verify review content is ready (all should be in `marketing/`):
 - [ ] Support URL
 - [ ] App Review notes (login credentials for reviewer if needed)
 
-Submit via App Store Connect or:
+Submit via App Store Connect or Fastlane:
 ```bash
-eas submit --platform ios
+fastlane deliver --ipa ./build-*.ipa
 ```
 
 ---

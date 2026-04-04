@@ -227,7 +227,7 @@ Update state file:
 
 ---
 
-## Section E: RevenueCat (MANUAL)
+## Section E: RevenueCat (MANUAL + AUTO verification)
 **Applies to: `payments` active**
 
 ### E1: Open dashboard
@@ -235,29 +235,110 @@ Update state file:
 open "https://app.revenuecat.com"
 ```
 
-Guide the developer:
-1. Create a new project matching the app name
+Guide the developer through these steps (must be done in the RevenueCat web dashboard):
+
+1. **Create a new project** matching the app name
 2. **Platform setup → iOS:**
-   - Connect App Store Connect (requires App Store Connect API Key — guide developer to create one at https://appstoreconnect.apple.com/access/integrations/api)
-   - Enter the Bundle ID from `app.json`
-3. **Entitlements:** Create at least one (e.g., `premium`)
-4. **Offerings:** Create a default offering with at least one package
-5. **API Keys:** Copy the public iOS API key
+   - Connect App Store Connect (requires App Store Connect API Key)
+   - Guide: `open "https://appstoreconnect.apple.com/access/integrations/api"` → Generate API Key with "App Manager" role → Download `.p8` file → Upload to RevenueCat
+   - Enter the Bundle ID from `app.json` → `ios.bundleIdentifier`
+3. **Platform setup → Android** (if applicable):
+   - Connect Google Play Console with service account JSON
+4. **Entitlements:** Create at least one (e.g., `premium`)
+   - Ask the developer what entitlement IDs to use
+5. **Offerings:** Create a default offering with at least one package
+   - The package must reference an App Store / Play Store product ID
+   - If products don't exist yet in App Store Connect, note this for later
+6. **API Keys:** Go to Project Settings → API Keys → Copy the **public** API keys
 
-### E2: Capture credentials
-Ask the developer to paste:
-- iOS API key
-- Android API key (if applicable)
+### E2: Capture and validate credentials
+Ask the developer to paste the API keys.
 
-Write to `.env.local`:
+**Validate format before writing:**
+```bash
+# iOS key must start with appl_
+if [[ "$IOS_KEY" != appl_* ]]; then
+  echo "ERROR: iOS API key must start with 'appl_'. Got: $IOS_KEY"
+  echo "Go to RevenueCat → Project Settings → API Keys → copy the PUBLIC iOS key"
+  exit 1
+fi
+
+# Android key must start with goog_ (if provided)
+if [[ -n "$ANDROID_KEY" && "$ANDROID_KEY" != goog_* ]]; then
+  echo "ERROR: Android API key must start with 'goog_'. Got: $ANDROID_KEY"
+  exit 1
+fi
 ```
-EXPO_PUBLIC_REVENUECAT_IOS_KEY=<ios-key>
-EXPO_PUBLIC_REVENUECAT_ANDROID_KEY=<android-key>
+
+Write validated keys to `.env.local` (do NOT echo key values in terminal):
+```bash
+# Write keys to .env.local (replace existing if present)
+sed -i '' "s|^EXPO_PUBLIC_REVENUECAT_IOS_KEY=.*|EXPO_PUBLIC_REVENUECAT_IOS_KEY=$IOS_KEY|" .env.local
+sed -i '' "s|^EXPO_PUBLIC_REVENUECAT_ANDROID_KEY=.*|EXPO_PUBLIC_REVENUECAT_ANDROID_KEY=$ANDROID_KEY|" .env.local
 ```
 
-Update state file:
+### E3: Deploy webhook and set secrets (AUTO)
+**Requires Section A (Supabase) to be completed first.**
+
+```bash
+# Push the subscription_status migration
+supabase db push
+
+# Deploy the webhook Edge Function
+supabase functions deploy revenuecat-webhook
+
+# Generate and set webhook auth secret
+WEBHOOK_SECRET=$(openssl rand -hex 32)
+supabase secrets set REVENUECAT_WEBHOOK_AUTH_KEY="$WEBHOOK_SECRET"
+```
+
+Tell the developer to configure the webhook in RevenueCat:
+```bash
+open "https://app.revenuecat.com"
+```
+1. Go to Project Settings → Webhooks
+2. URL: `https://<supabase-project-ref>.supabase.co/functions/v1/revenuecat-webhook`
+3. Authorization header: `Bearer <the WEBHOOK_SECRET generated above>`
+
+### E4: Capture entitlement IDs and write context file
+Ask the developer what entitlement IDs they created (e.g., `premium`, `pro`).
+
+Create `.claude/context/revenuecat.md`:
+```markdown
+# RevenueCat Configuration
+
+## Entitlements
+- `premium` — full access to all features
+
+## Offerings
+- Default offering with monthly/yearly packages
+
+## Webhook
+- Endpoint: `https://<project-ref>.supabase.co/functions/v1/revenuecat-webhook`
+- Auth: Bearer token (stored as REVENUECAT_WEBHOOK_AUTH_KEY secret)
+
+## App Store Products
+- TBD (developer must create in App Store Connect)
+```
+
+### E5: Add keys to EAS secrets (if Section F will run)
+```bash
+eas secret:create --name EXPO_PUBLIC_REVENUECAT_IOS_KEY --value "$IOS_KEY" --scope project --force
+if [[ -n "$ANDROID_KEY" ]]; then
+  eas secret:create --name EXPO_PUBLIC_REVENUECAT_ANDROID_KEY --value "$ANDROID_KEY" --scope project --force
+fi
+```
+
+### E6: Update state
 ```json
-{ "revenuecat": { "status": "manual_complete" } }
+{
+  "revenuecat": {
+    "status": "manual_complete",
+    "entitlements": ["premium"],
+    "webhookDeployed": true,
+    "easSecretsSet": true
+  }
+}
 ```
 
 ---

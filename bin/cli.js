@@ -106,8 +106,9 @@ const MODULE_FILES = {
     agents: ['payments.md'],
     workflows: [],
     libs: ['purchases.ts'],
-    dirs: [],
+    dirs: ['supabase'],
     templates: [],
+    appFiles: ['app/paywall.tsx'],
   },
   push: {
     agents: ['push.md'],
@@ -467,6 +468,7 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
   const workflows = new Set(['local-dev.md', 'marketing-launch.md', 'build-and-ship.md', 'design-kickoff.md', 'provision-services.md']); // always included
   const libs = new Set();
   const dirs = new Set();
+  const appFiles = new Set();
 
   for (const mod of modules) {
     const files = MODULE_FILES[mod];
@@ -475,6 +477,7 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
     files.workflows.forEach(f => workflows.add(f));
     files.libs.forEach(f => libs.add(f));
     files.dirs.forEach(f => dirs.add(f));
+    if (files.appFiles) files.appFiles.forEach(f => appFiles.add(f));
   }
 
   // Add design style file + designer.md if visual modules are active
@@ -570,6 +573,21 @@ function copyModuleFiles(targetDir, projectName, modules, designStyle, skipExist
         console.log(`  ✅ ${dir}/ created`);
       }
     }
+  }
+
+  // Copy app-level files (e.g., paywall.tsx for payments module)
+  if (appFiles.size > 0) {
+    const copied = [];
+    for (const file of appFiles) {
+      const src = path.join(templateDir, file);
+      const dest = path.join(targetDir, file);
+      if (fs.existsSync(src)) {
+        if (copyFile(src, dest, projectName, skipExisting)) {
+          copied.push(file);
+        }
+      }
+    }
+    if (copied.length) console.log(`  ✅ App files added: ${copied.join(', ')}`);
   }
 
   // Always create marketing directories

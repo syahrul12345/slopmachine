@@ -46,3 +46,22 @@ export async function restorePurchases() {
     return null;
   }
 }
+
+export async function checkEntitlement(entitlementId: string): Promise<boolean> {
+  try {
+    const customerInfo = await Purchases.getCustomerInfo();
+    return customerInfo.entitlements.active[entitlementId] !== undefined;
+  } catch (e) {
+    console.error('[purchases] Entitlement check failed:', e);
+    return false;
+  }
+}
+
+export async function getCustomerInfo() {
+  try {
+    return await Purchases.getCustomerInfo();
+  } catch (e) {
+    console.error('[purchases] Failed to get customer info:', e);
+    return null;
+  }
+}

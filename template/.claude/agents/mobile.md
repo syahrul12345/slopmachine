@@ -47,9 +47,9 @@ The `plugins` array in `app.json` / `app.config.js` only accepts packages that *
 
 **Rules:**
 1. **NEVER** add a package to `plugins` unless you have verified it exports a config plugin
-2. If a package needs native config (e.g., entitlements, Info.plist keys), check if it has a **separate** Expo plugin package (e.g., `@revenuecat/purchases-expo-plugin` for `react-native-purchases`)
+2. If a package needs native config (e.g., entitlements, Info.plist keys), check if it has a **separate** Expo plugin package — but verify it exists on npm first
 3. When in doubt, check the package's README or Expo docs for config plugin instructions
-4. Common packages that do NOT have their own config plugin: `react-native-purchases` (use `@revenuecat/purchases-expo-plugin` instead)
+4. Common packages that do NOT have a config plugin and use **autolinking only**: `react-native-purchases` (NO expo plugin exists — `@revenuecat/purchases-expo-plugin` is a phantom package that does not exist on npm)
 5. Common packages that DO have a config plugin: `expo-notifications`, `expo-camera`, `expo-location`, `expo-apple-authentication`
 
 ## Package Installation
@@ -71,16 +71,26 @@ npx expo start --dev-client  # Start with dev client (for native modules)
 npx expo run:ios        # Build and run on iOS simulator
 ```
 
-## Build Commands
+## Build & Submit — LOCAL BUILDS ONLY
+**NEVER use EAS cloud builds. Always build locally.**
+
 ```bash
-eas build --profile development --platform ios   # Dev build (simulator)
-eas build --profile preview --platform ios        # Preview (TestFlight)
-eas build --profile production --platform ios     # Production
-eas submit --platform ios                          # Submit to App Store
+# 1. Build locally (generates .ipa on YOUR machine)
+eas build --profile production --platform ios --local
+
+# 2. Upload to TestFlight via Fastlane (app-specific password is already configured)
+fastlane deliver --ipa ./build-*.ipa --skip_metadata --skip_screenshots
+# Or directly with pilot:
+fastlane pilot upload --ipa ./build-*.ipa
 ```
 
-## EAS Config
-- `eas.json` has three profiles: development, preview, production
+**Rules:**
+- `eas build` without `--local` is BANNED — no cloud builds
+- `eas submit` is BANNED — use Fastlane to upload to TestFlight
+- App-specific password for Fastlane is already set up — do NOT ask the developer to configure it
+- If Fastlane is not installed, run `brew install fastlane` first
+
+## App Config
 - `app.json` has Expo config — update `name`, `slug`, `ios.bundleIdentifier`, `android.package`
 - Environment variables prefixed with `EXPO_PUBLIC_` for client access
 
